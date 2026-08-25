@@ -321,7 +321,7 @@ function ProvaSocial() {
         <h2 id="prova-title" className="rule-gold text-2xl font-bold md:text-3xl">
           Quem decide com base em método não depende de torcida
         </h2>
-        <div className="mt-12 space-y-6">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2">
           {[
             {
               texto:
@@ -338,14 +338,14 @@ function ProvaSocial() {
               iniciais: "MS",
             },
           ].map((t) => (
-            <figure key={t.nome} className="rounded-xl bg-card p-6 shadow-card md:p-8">
-              <blockquote className="text-base leading-relaxed md:text-lg">
-                "{t.texto}"
-              </blockquote>
-              <figcaption className="mt-5 flex items-center gap-3">
+            <figure
+              key={t.nome}
+              className="flex flex-col rounded-xl border border-border bg-card p-6 shadow-card transition-shadow hover:shadow-card-lg"
+            >
+              <div className="flex items-center gap-3">
                 <span
                   aria-hidden="true"
-                  className="flex size-10 items-center justify-center rounded-full bg-gold/15 font-display text-sm font-bold text-gold"
+                  className="flex size-11 items-center justify-center rounded-full bg-gold/15 font-display text-sm font-bold text-gold"
                 >
                   {t.iniciais}
                 </span>
@@ -353,7 +353,19 @@ function ProvaSocial() {
                   <span className="block text-sm font-bold">{t.nome}</span>
                   <span className="block text-sm text-muted-foreground">{t.papel}</span>
                 </span>
-              </figcaption>
+              </div>
+              <div
+                className="mt-4 flex gap-1 text-gold"
+                role="img"
+                aria-label="Avaliação: 5 de 5 estrelas"
+              >
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} aria-hidden="true" className="size-4 fill-current" />
+                ))}
+              </div>
+              <blockquote className="mt-3 flex-1 text-base leading-relaxed">
+                "{t.texto}"
+              </blockquote>
             </figure>
           ))}
         </div>
