@@ -10,6 +10,7 @@ import {
   Quote,
   Scale,
   ShieldCheck,
+  Star,
 } from "lucide-react";
 import cover from "@/assets/ebook-cover.png";
 import { CtaLink } from "@/components/landing/cta-button";
