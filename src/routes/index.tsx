@@ -1,6 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { ArrowRight, Lock, Quote } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpenCheck,
+  EyeOff,
+  FileCheck2,
+  Lock,
+  PlayCircle,
+  Quote,
+  Scale,
+  ShieldCheck,
+} from "lucide-react";
 import cover from "@/assets/ebook-cover.png";
 import { CtaLink } from "@/components/landing/cta-button";
 import { track } from "@/lib/analytics";
@@ -96,6 +106,18 @@ const faq = [
   },
 ];
 
+const stats = [
+  { valor: "5", rotulo: "fontes oficiais linkadas" },
+  { valor: "4", rotulo: "camadas de triagem" },
+  { valor: "0", rotulo: "opiniões prontas" },
+];
+
+const confianca = [
+  { icon: ShieldCheck, texto: "Fontes Oficiais Verificáveis" },
+  { icon: EyeOff, texto: "Zero Especulação Ideológica" },
+  { icon: Scale, texto: "Sem Indicação de Voto" },
+];
+
 /* ------------------------------- componentes ------------------------------ */
 
 function LandingPage() {
@@ -107,6 +129,7 @@ function LandingPage() {
     <div className="min-h-screen bg-background">
       <main>
         <Hero />
+        <FaixaConfianca />
         <Identificacao />
         <Implicacoes />
         <Mecanismo />
@@ -123,42 +146,81 @@ function LandingPage() {
 /* DOBRA 1 — Hero: a promessa */
 function Hero() {
   return (
-    <section className="border-b border-border bg-card" aria-labelledby="hero-title">
-      <div className="mx-auto max-w-4xl px-4 py-20 text-center md:py-28">
-        <p className="eyebrow">E-book · Guia comparativo</p>
-        <h1
-          id="hero-title"
-          className="mx-auto mt-6 max-w-3xl text-3xl leading-tight md:text-5xl md:leading-tight"
-        >
-          Chega de discutir política com base em memes ou opiniões de redes sociais. Conheça o guia
-          comparativo definitivo que coloca lado a lado o que Lula e Bolsonaro realmente fizeram,
-          fundamentado estritamente em dados oficiais.
-        </h1>
-        <p className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-          Através de uma estrutura de triagem em 4 camadas que separa Fato, Interpretação e
-          Acusação, você adquire segurança intelectual para tirar as suas próprias conclusões, sem
-          precisar herdar a raiva das bolhas de internet.
-        </p>
-        <div className="mt-10 flex justify-center">
-          <CtaLink
-            href="#oferta"
-            tone="gold"
-            size="lg"
-            location="hero_primary"
-            className="rounded-none"
-          >
-            QUERO ACESSAR O GUIA COMPARATIVO
-          </CtaLink>
-        </div>
-        <p className="mx-auto mt-6 flex max-w-xl items-start justify-center gap-2 text-left text-sm leading-relaxed text-muted-foreground">
-          <Lock aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-primary" />
-          <span>
-            <strong className="font-semibold text-foreground">Zero especulação ideológica:</strong>{" "}
-            Todos os dados apresentados neste guia vêm acompanhados de links diretos para as bases
-            oficiais do IBGE, STF, TSE, INPE e Tesouro Nacional. Verifique o recibo oficial em um
-            clique.
+    <section className="bg-secondary" aria-labelledby="hero-title">
+      <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-16 md:grid-cols-[1.2fr_1fr] md:py-24">
+        <div>
+          <span className="pill-badge">
+            <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
+            E-book · Guia comparativo
           </span>
-        </p>
+          <h1
+            id="hero-title"
+            className="mt-6 text-3xl leading-tight font-extrabold md:text-5xl md:leading-tight"
+          >
+            Chega de discutir política com base em memes.{" "}
+            <span className="text-gold">Compare o que cada um realmente fez.</span>
+          </h1>
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+            O guia comparativo definitivo que coloca lado a lado o que Lula e Bolsonaro realmente
+            fizeram, fundamentado estritamente em dados oficiais — através de uma triagem em 4
+            camadas que separa Fato, Interpretação e Acusação.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <CtaLink href="#oferta" tone="gold" size="lg" location="hero_primary">
+              QUERO ACESSAR O GUIA COMPARATIVO
+            </CtaLink>
+            <CtaLink href="#metodo" tone="quiet" size="md" location="hero_secondary">
+              <PlayCircle aria-hidden="true" className="size-5" />
+              Ver como funciona
+            </CtaLink>
+          </div>
+          <dl className="mt-10 flex flex-wrap gap-x-10 gap-y-4">
+            {stats.map((s) => (
+              <div key={s.rotulo}>
+                <dt className="sr-only">{s.rotulo}</dt>
+                <dd className="font-display text-2xl font-extrabold md:text-3xl">{s.valor}</dd>
+                <dd className="mt-0.5 text-sm text-muted-foreground">{s.rotulo}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <div className="flex justify-center md:justify-end">
+          <div className="rounded-2xl bg-card p-6 shadow-card-lg">
+            <img
+              src={cover}
+              width={1024}
+              height={1280}
+              alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
+              className="w-56 max-w-full rounded-lg md:w-64"
+            />
+            <p className="mt-4 flex items-start gap-2 text-left text-xs leading-relaxed text-muted-foreground">
+              <Lock aria-hidden="true" className="mt-0.5 size-3.5 shrink-0 text-gold" />
+              <span>
+                Dados com links diretos para as bases oficiais do IBGE, STF, TSE, INPE e Tesouro
+                Nacional.
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* Faixa de confiança */
+function FaixaConfianca() {
+  return (
+    <section aria-label="Compromissos de transparência" className="border-y border-border bg-card">
+      <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-12 gap-y-4 px-4 py-6">
+        {confianca.map((c) => (
+          <p
+            key={c.texto}
+            className="flex items-center gap-2.5 text-sm font-semibold text-muted-foreground"
+          >
+            <c.icon aria-hidden="true" className="size-5 text-gold" />
+            {c.texto}
+          </p>
+        ))}
       </div>
     </section>
   );
@@ -169,7 +231,7 @@ function Identificacao() {
   return (
     <section className="section-pad" aria-labelledby="ident-title">
       <div className="mx-auto max-w-2xl px-4">
-        <h2 id="ident-title" className="rule-gold text-2xl md:text-3xl">
+        <h2 id="ident-title" className="rule-gold text-2xl font-bold md:text-3xl">
           Se você está cansado do estresse e da polarização, você não está sozinho.
         </h2>
         <p className="mt-8 text-base leading-loose md:text-lg">
@@ -188,15 +250,17 @@ function Identificacao() {
 /* DOBRA 3 — Implicações: a dor */
 function Implicacoes() {
   return (
-    <section className="section-pad border-y border-border bg-secondary" aria-labelledby="dor-title">
-      <div className="mx-auto max-w-2xl px-4">
-        <h2 id="dor-title" className="rule-gold text-2xl md:text-3xl">
+    <section className="section-pad bg-secondary" aria-labelledby="dor-title">
+      <div className="mx-auto max-w-3xl px-4">
+        <h2 id="dor-title" className="rule-gold text-2xl font-bold md:text-3xl">
           O custo invisível de não ter dados seguros na mão
         </h2>
-        <ul className="mt-10 space-y-8">
+        <ul className="mt-10 space-y-5">
           {dores.map((d) => (
-            <li key={d} className="flex gap-4">
-              <Quote aria-hidden="true" className="mt-1 size-5 shrink-0 text-gold" />
+            <li key={d} className="flex gap-4 rounded-xl bg-card p-6 shadow-card">
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-accent">
+                <Quote aria-hidden="true" className="size-5 text-gold" />
+              </span>
               <p className="text-base leading-relaxed md:text-lg">{d}</p>
             </li>
           ))}
@@ -209,10 +273,10 @@ function Implicacoes() {
 /* DOBRA 4 — Mecanismo único: a solução */
 function Mecanismo() {
   return (
-    <section className="section-pad" aria-labelledby="mec-title">
+    <section id="metodo" className="section-pad" aria-labelledby="mec-title">
       <div className="mx-auto max-w-5xl px-4">
         <div className="max-w-2xl">
-          <h2 id="mec-title" className="rule-gold text-2xl md:text-3xl">
+          <h2 id="mec-title" className="rule-gold text-2xl font-bold md:text-3xl">
             Não vendemos opiniões prontas. Entregamos a régua.
           </h2>
           <p className="mt-8 text-base leading-relaxed text-muted-foreground md:text-lg">
@@ -220,20 +284,28 @@ function Mecanismo() {
             científica em cada tema analisado:
           </p>
         </div>
-        <ol className="mt-10 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {passos.map((p) => (
-            <li key={p.n} className="bg-card p-6">
-              <span className="font-serif text-3xl text-gold">{p.n}</span>
-              <h3 className="mt-3 font-sans text-base font-semibold">{p.t}</h3>
+            <li
+              key={p.n}
+              className="rounded-xl border border-border bg-card p-6 shadow-card transition-shadow hover:shadow-card-lg"
+            >
+              <span className="flex size-10 items-center justify-center rounded-lg bg-gold font-display text-lg font-extrabold text-gold-foreground">
+                {p.n}
+              </span>
+              <h3 className="mt-4 font-display text-base font-bold tracking-tight">{p.t}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.d}</p>
             </li>
           ))}
         </ol>
-        <div className="mt-10 border-l-2 border-gold bg-card p-6 shadow-editorial md:p-8">
+        <div className="mt-10 flex items-start gap-4 rounded-xl bg-accent p-6 md:p-8">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-card shadow-card">
+            <BookOpenCheck aria-hidden="true" className="size-5 text-gold" />
+          </span>
           <p className="text-base leading-relaxed md:text-lg">
-            <strong className="font-semibold text-primary">A Chave do Entendimento:</strong> O
-            Glossário Jurídico Descomplicado. Explicamos a diferença real entre investigação,
-            indiciamento, denúncia, condenação e anulação.
+            <strong className="font-bold">A Chave do Entendimento:</strong> o Glossário Jurídico
+            Descomplicado. Explicamos a diferença real entre investigação, indiciamento, denúncia,
+            condenação e anulação.
           </p>
         </div>
       </div>
@@ -241,35 +313,49 @@ function Mecanismo() {
   );
 }
 
-/* DOBRA 5 — Prova social contextualizada (pull quotes) */
+/* DOBRA 5 — Prova social contextualizada */
 function ProvaSocial() {
   return (
-    <section className="section-pad border-y border-border bg-secondary" aria-labelledby="prova-title">
+    <section className="section-pad bg-secondary" aria-labelledby="prova-title">
       <div className="mx-auto max-w-3xl px-4">
-        <h2 id="prova-title" className="rule-gold text-2xl md:text-3xl">
+        <h2 id="prova-title" className="rule-gold text-2xl font-bold md:text-3xl">
           Quem decide com base em método não depende de torcida
         </h2>
-        <div className="mt-12 space-y-12">
-          <blockquote className="border-l-2 border-primary pl-6">
-            <p className="font-serif text-lg leading-relaxed md:text-xl">
-              "A intervenção foi imediata: a Matriz de Comparação me permitiu olhar os números da
-              economia de cada governo lado a lado. O resultado é que hoje consigo participar de
-              qualquer conversa de forma calma e equilibrada."
-            </p>
-            <footer className="mt-4 text-sm font-semibold tracking-wide text-muted-foreground uppercase">
-              — Carlos M., Engenheiro
-            </footer>
-          </blockquote>
-          <blockquote className="border-l-2 border-primary pl-6">
-            <p className="font-serif text-lg leading-relaxed md:text-xl">
-              "Eu tinha pavor de compartilhar dados no trabalho e ser corrigida. Usei o método de
-              triagem. O resultado é que agora debato com segurança intelectual inabalável; eu
-              apenas mostro o link oficial do STF no PDF."
-            </p>
-            <footer className="mt-4 text-sm font-semibold tracking-wide text-muted-foreground uppercase">
-              — Mariana S., Advogada
-            </footer>
-          </blockquote>
+        <div className="mt-12 space-y-6">
+          {[
+            {
+              texto:
+                "A intervenção foi imediata: a Matriz de Comparação me permitiu olhar os números da economia de cada governo lado a lado. O resultado é que hoje consigo participar de qualquer conversa de forma calma e equilibrada.",
+              nome: "Carlos M.",
+              papel: "Engenheiro",
+              iniciais: "CM",
+            },
+            {
+              texto:
+                "Eu tinha pavor de compartilhar dados no trabalho e ser corrigida. Usei o método de triagem. O resultado é que agora debato com segurança intelectual inabalável; eu apenas mostro o link oficial do STF no PDF.",
+              nome: "Mariana S.",
+              papel: "Advogada",
+              iniciais: "MS",
+            },
+          ].map((t) => (
+            <figure key={t.nome} className="rounded-xl bg-card p-6 shadow-card md:p-8">
+              <blockquote className="text-base leading-relaxed md:text-lg">
+                "{t.texto}"
+              </blockquote>
+              <figcaption className="mt-5 flex items-center gap-3">
+                <span
+                  aria-hidden="true"
+                  className="flex size-10 items-center justify-center rounded-full bg-gold/15 font-display text-sm font-bold text-gold"
+                >
+                  {t.iniciais}
+                </span>
+                <span>
+                  <span className="block text-sm font-bold">{t.nome}</span>
+                  <span className="block text-sm text-muted-foreground">{t.papel}</span>
+                </span>
+              </figcaption>
+            </figure>
+          ))}
         </div>
       </div>
     </section>
@@ -281,40 +367,40 @@ function TabelaComparativa() {
   return (
     <section className="section-pad" aria-labelledby="tabela-title">
       <div className="mx-auto max-w-4xl px-4">
-        <h2 id="tabela-title" className="rule-gold text-2xl md:text-3xl">
+        <h2 id="tabela-title" className="rule-gold text-2xl font-bold md:text-3xl">
           Como você prefere se informar a partir de hoje?
         </h2>
-        <div className="mt-10 overflow-x-auto">
+        <div className="mt-10 overflow-x-auto rounded-xl border border-border bg-card shadow-card">
           <table className="w-full min-w-[34rem] border-collapse text-left text-sm md:text-base">
             <caption className="sr-only">
               Comparação entre se informar pelas redes sociais, pelo Google ou pelo guia
               comparativo, segundo origem, isenção e tempo.
             </caption>
             <thead>
-              <tr className="border-b-2 border-primary">
-                <th scope="col" className="py-3 pr-4 font-semibold">
+              <tr className="border-b border-border bg-secondary">
+                <th scope="col" className="px-5 py-4 font-bold">
                   Critério
                 </th>
-                <th scope="col" className="py-3 pr-4 font-semibold">
+                <th scope="col" className="px-5 py-4 font-bold">
                   Bolha das Redes
                 </th>
-                <th scope="col" className="py-3 pr-4 font-semibold">
+                <th scope="col" className="px-5 py-4 font-bold">
                   Google
                 </th>
-                <th scope="col" className="py-3 font-semibold text-primary">
+                <th scope="col" className="px-5 py-4 font-bold text-gold">
                   O Nosso Guia
                 </th>
               </tr>
             </thead>
             <tbody>
               {comparativo.map(([criterio, redes, google, guia]) => (
-                <tr key={criterio} className="border-b border-border">
-                  <th scope="row" className="py-4 pr-4 font-semibold">
+                <tr key={criterio} className="border-b border-border last:border-0">
+                  <th scope="row" className="px-5 py-4 font-semibold">
                     {criterio}
                   </th>
-                  <td className="py-4 pr-4 text-muted-foreground">{redes}</td>
-                  <td className="py-4 pr-4 text-muted-foreground">{google}</td>
-                  <td className="py-4 font-medium text-primary">{guia}</td>
+                  <td className="px-5 py-4 text-muted-foreground">{redes}</td>
+                  <td className="px-5 py-4 text-muted-foreground">{google}</td>
+                  <td className="bg-accent/50 px-5 py-4 font-semibold text-foreground">{guia}</td>
                 </tr>
               ))}
             </tbody>
@@ -328,64 +414,64 @@ function TabelaComparativa() {
 /* DOBRA 7 — Oferta, garantia e FAQ */
 function Oferta() {
   return (
-    <section
-      id="oferta"
-      className="section-pad border-t border-border bg-card"
-      aria-labelledby="oferta-title"
-    >
+    <section id="oferta" className="section-pad bg-secondary" aria-labelledby="oferta-title">
       <div className="mx-auto max-w-3xl px-4">
-        <div className="grid items-center gap-10 md:grid-cols-[1fr_auto]">
-          <div>
-            <p className="eyebrow">Acesso completo</p>
-            <h2 id="oferta-title" className="mt-4 text-2xl md:text-3xl">
-              Adquira o Acesso Completo
-            </h2>
-            <p className="mt-6 text-base leading-relaxed md:text-lg">
-              Matriz de Integridade, Glossário Jurídico, Ficha Pessoal de Decisão.{" "}
-              <strong className="font-semibold">Acesso Vitalício</strong> + Atualizações com Fontes
-              Oficiais Linkadas.
-            </p>
-            <div className="mt-8">
-              <CtaLink
-                href={OFERTA.checkout}
-                tone="gold"
-                size="lg"
-                location="offer_primary"
-                className="rounded-none"
-              >
-                QUERO ACESSAR O GUIA COMPARATIVO AGORA
-              </CtaLink>
+        <div className="rounded-2xl bg-card p-8 shadow-card-lg md:p-10">
+          <div className="grid items-center gap-10 md:grid-cols-[1fr_auto]">
+            <div>
+              <p className="eyebrow">Acesso completo</p>
+              <h2 id="oferta-title" className="mt-4 text-2xl font-bold md:text-3xl">
+                Adquira o Acesso Completo
+              </h2>
+              <p className="mt-6 text-base leading-relaxed md:text-lg">
+                Matriz de Integridade, Glossário Jurídico, Ficha Pessoal de Decisão.{" "}
+                <strong className="font-bold">Acesso Vitalício</strong> + Atualizações com Fontes
+                Oficiais Linkadas.
+              </p>
+              <div className="mt-8">
+                <CtaLink href={OFERTA.checkout} tone="gold" size="lg" location="offer_primary">
+                  QUERO ACESSAR O GUIA COMPARATIVO AGORA
+                </CtaLink>
+              </div>
             </div>
-          </div>
-          <div className="flex justify-center">
-            <img
-              src={cover}
-              width={1024}
-              height={1280}
-              loading="lazy"
-              alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
-              className="w-48 max-w-full shadow-cover md:w-56"
-            />
+            <div className="flex justify-center">
+              <img
+                src={cover}
+                width={1024}
+                height={1280}
+                loading="lazy"
+                alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
+                className="w-48 max-w-full rounded-lg shadow-cover md:w-56"
+              />
+            </div>
           </div>
         </div>
 
-        <div className="mt-14 border border-border bg-background p-6 md:p-8">
-          <h3 className="font-serif text-xl md:text-2xl">
-            Nossa Garantia de Transparência Científica
-          </h3>
-          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            Se em até 7 dias você encontrar uma única informação relevante neste guia que não
-            possua fonte oficial linkada e rastreável, devolvemos 100% do seu dinheiro. Nosso
-            compromisso é com a verdade factual.
-          </p>
+        <div className="mt-8 flex items-start gap-4 rounded-xl border border-gold/30 bg-accent p-6 md:p-8">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-card shadow-card">
+            <FileCheck2 aria-hidden="true" className="size-5 text-gold" />
+          </span>
+          <div>
+            <h3 className="font-display text-lg font-bold md:text-xl">
+              Nossa Garantia de Transparência Científica
+            </h3>
+            <p className="mt-2 text-base leading-relaxed text-muted-foreground">
+              Se em até 7 dias você encontrar uma única informação relevante neste guia que não
+              possua fonte oficial linkada e rastreável, devolvemos 100% do seu dinheiro. Nosso
+              compromisso é com a verdade factual.
+            </p>
+          </div>
         </div>
 
         <div className="mt-14">
-          <h3 className="font-serif text-xl md:text-2xl">Perguntas frequentes</h3>
-          <div className="mt-6 divide-y divide-border border-y border-border">
+          <h3 className="font-display text-xl font-bold md:text-2xl">Perguntas frequentes</h3>
+          <div className="mt-6 space-y-3">
             {faq.map((f) => (
-              <details key={f.q} className="group py-5">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold marker:hidden">
+              <details
+                key={f.q}
+                className="group rounded-xl border border-border bg-card px-6 py-5 shadow-card"
+              >
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-bold marker:hidden">
                   {f.q}
                   <ArrowRight
                     aria-hidden="true"
@@ -399,13 +485,7 @@ function Oferta() {
         </div>
 
         <div className="mt-14 text-center">
-          <CtaLink
-            href={OFERTA.checkout}
-            tone="gold"
-            size="lg"
-            location="final_cta"
-            className="rounded-none"
-          >
+          <CtaLink href={OFERTA.checkout} tone="gold" size="lg" location="final_cta">
             QUERO ACESSAR O GUIA COMPARATIVO AGORA
           </CtaLink>
         </div>
@@ -416,9 +496,9 @@ function Oferta() {
 
 function Footer() {
   return (
-    <footer className="border-t border-border bg-primary text-primary-foreground">
+    <footer className="bg-primary text-primary-foreground">
       <div className="mx-auto max-w-3xl px-4 py-10 text-center text-sm">
-        <p>
+        <p className="font-display font-bold">
           Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência.
         </p>
         <p className="mt-2 text-primary-foreground/70">
@@ -433,14 +513,7 @@ function Footer() {
 function MobileBar() {
   return (
     <div className="sticky bottom-0 z-40 border-t border-border bg-card p-3 md:hidden">
-      <CtaLink
-        href="#oferta"
-        tone="gold"
-        size="md"
-        full
-        location="mobile_bar"
-        className="rounded-none"
-      >
+      <CtaLink href="#oferta" tone="gold" size="md" full location="mobile_bar">
         QUERO ACESSAR O GUIA
       </CtaLink>
     </div>
