@@ -8,7 +8,7 @@ const cta = cva(
     variants: {
       tone: {
         primary: "bg-primary text-primary-foreground hover:bg-primary/90",
-        gold: "bg-gold text-gold-foreground hover:bg-gold/90",
+        gold: "bg-gold text-gold-foreground shadow-cta hover:bg-gold/90",
         outline: "border border-primary/30 bg-card text-primary hover:bg-secondary",
         quiet: "text-primary underline underline-offset-4 hover:text-primary/80",
       },
