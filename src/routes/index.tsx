@@ -338,6 +338,34 @@ function ProvaSocial() {
               papel: "Advogada",
               iniciais: "MS",
             },
+            {
+              texto:
+                "Finalmente entendi a diferença entre investigação, denúncia e condenação. Parei de repetir o que ouço por aí e comecei a explicar para a minha família com calma.",
+              nome: "Roberto T.",
+              papel: "Professor de História",
+              iniciais: "RT",
+            },
+            {
+              texto:
+                "O Glossário Jurídico Descomplicado vale o investimento sozinho. Consegui ler os jornais com outro nível de compreensão e parei de me sentir perdido nos debates.",
+              nome: "Fernanda L.",
+              papel: "Contadora",
+              iniciais: "FL",
+            },
+            {
+              texto:
+                "Minha mesa de bar virou um espaço de conversa, não de briga. Tenho dados oficiais na ponta da língua e isso muda completamente o tom da discussão.",
+              nome: "João P.",
+              papel: "Empresário",
+              iniciais: "JP",
+            },
+            {
+              texto:
+                "Sempre achei que política fosse só opinião. O guia me mostrou que dá para comparar fatos de forma organizada. Hoje me sinto muito mais segura para votar.",
+              nome: "Aline R.",
+              papel: "Estudante de Direito",
+              iniciais: "AR",
+            },
           ].map((t) => (
             <figure
               key={t.nome}
