@@ -187,13 +187,13 @@ function Hero() {
         </div>
         <div className="flex justify-center md:justify-end">
           <div className="rounded-2xl bg-card p-6 shadow-card-lg">
-            <img
-              src={cover}
-              width={1024}
-              height={1280}
-              alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
-              className="w-56 max-w-full rounded-lg md:w-64"
-            />
+              <img
+                src={cover}
+                width={1920}
+                height={1920}
+                alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
+                className="w-64 max-w-full rounded-lg md:w-80"
+              />
             <p className="mt-4 flex items-start gap-2 text-left text-xs leading-relaxed text-muted-foreground">
               <Lock aria-hidden="true" className="mt-0.5 size-3.5 shrink-0 text-gold" />
               <span>
@@ -478,11 +478,11 @@ function Oferta() {
             <div className="flex justify-center">
               <img
                 src={cover}
-                width={1024}
-                height={1280}
+                width={1920}
+                height={1920}
                 loading="lazy"
                 alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
-                className="w-48 max-w-full rounded-lg shadow-cover md:w-56"
+                className="w-56 max-w-full rounded-lg shadow-cover md:w-64"
               />
             </div>
           </div>
