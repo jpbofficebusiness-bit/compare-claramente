@@ -158,7 +158,8 @@ function Hero() {
             id="hero-title"
             className="mt-6 text-3xl leading-tight font-extrabold md:text-5xl md:leading-tight"
           >
-            Chega de discutir política com base em memes.{" "}
+            Chega de discutir política com base em Instagram, notícias que você não sabe a
+            procedência e grupos aleatórios.{" "}
             <span className="text-gold">Compare o que cada um realmente fez.</span>
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
