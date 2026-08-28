@@ -429,6 +429,7 @@ function ProvaSocial() {
               nome: "Carlos M.",
               papel: "Engenheiro",
               iniciais: "CM",
+              rede: { icon: MessageCircle, nome: "WhatsApp", cor: "text-[#25D366]" },
             },
             {
               texto:
@@ -436,6 +437,7 @@ function ProvaSocial() {
               nome: "Mariana S.",
               papel: "Advogada",
               iniciais: "MS",
+              rede: { icon: Instagram, nome: "Instagram", cor: "text-[#E1306C]" },
             },
             {
               texto:
@@ -443,6 +445,7 @@ function ProvaSocial() {
               nome: "Roberto T.",
               papel: "Professor de História",
               iniciais: "RT",
+              rede: { icon: Mail, nome: "Gmail", cor: "text-[#EA4335]" },
             },
             {
               texto:
@@ -450,6 +453,7 @@ function ProvaSocial() {
               nome: "Fernanda L.",
               papel: "Contadora",
               iniciais: "FL",
+              rede: { icon: MessageCircle, nome: "WhatsApp", cor: "text-[#25D366]" },
             },
             {
               texto:
@@ -457,6 +461,7 @@ function ProvaSocial() {
               nome: "João P.",
               papel: "Empresário",
               iniciais: "JP",
+              rede: { icon: Instagram, nome: "Instagram", cor: "text-[#E1306C]" },
             },
             {
               texto:
@@ -464,6 +469,7 @@ function ProvaSocial() {
               nome: "Aline R.",
               papel: "Estudante de Direito",
               iniciais: "AR",
+              rede: { icon: Mail, nome: "Gmail", cor: "text-[#EA4335]" },
             },
           ].map((t) => (
             <figure
@@ -477,10 +483,14 @@ function ProvaSocial() {
                 >
                   {t.iniciais}
                 </span>
-                <span>
+                <span className="flex-1">
                   <span className="block text-sm font-bold">{t.nome}</span>
                   <span className="block text-sm text-muted-foreground">{t.papel}</span>
                 </span>
+                <t.rede.icon
+                  aria-label={`Depoimento enviado via ${t.rede.nome}`}
+                  className={`size-5 shrink-0 ${t.rede.cor}`}
+                />
               </div>
               <div
                 className="mt-4 flex gap-1 text-gold"
