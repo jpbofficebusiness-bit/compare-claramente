@@ -159,53 +159,34 @@ function LandingPage() {
 function Hero() {
   return (
     <section className="bg-secondary" aria-labelledby="hero-title">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-16 md:grid-cols-[1.2fr_1fr] md:py-24">
-        <div>
-          <span className="pill-badge">
-            <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
-            E-book · Guia comparativo
-          </span>
-          <h1
-            id="hero-title"
-            className="mt-6 text-3xl leading-tight font-extrabold md:text-5xl md:leading-tight"
-          >
-            Chega de discutir política com base em Instagram, notícias que você não sabe a
-            procedência e grupos aleatórios.{" "}
-            <span className="text-gold">Compare o que cada um realmente fez.</span>
-          </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            O guia comparativo definitivo que coloca lado a lado o que Lula e Bolsonaro realmente
-            fizeram, fundamentado estritamente em dados oficiais — através de uma triagem em 4
-            camadas que separa Fato, Interpretação e Acusação.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <CtaLink href="#oferta" tone="gold" size="lg" location="hero_primary">
-              QUERO ACESSAR O GUIA COMPARATIVO
-            </CtaLink>
-            <CtaLink href="#metodo" tone="quiet" size="md" location="hero_secondary">
-              <PlayCircle aria-hidden="true" className="size-5" />
-              Ver como funciona
-            </CtaLink>
-          </div>
-          <dl className="mt-10 flex flex-wrap gap-x-10 gap-y-4">
-            {stats.map((s) => (
-              <div key={s.rotulo}>
-                <dt className="sr-only">{s.rotulo}</dt>
-                <dd className="font-display text-2xl font-extrabold md:text-3xl">{s.valor}</dd>
-                <dd className="mt-0.5 text-sm text-muted-foreground">{s.rotulo}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-        <div className="flex justify-center md:justify-end">
+      <div className="mx-auto flex max-w-3xl flex-col items-center px-4 py-16 text-center md:py-24">
+        <span className="pill-badge">
+          <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
+          E-book · Guia comparativo
+        </span>
+        <h1
+          id="hero-title"
+          className="mt-6 text-3xl leading-tight font-extrabold md:text-5xl md:leading-tight"
+        >
+          Chega de discutir política com base em Instagram, notícias que você não sabe a
+          procedência e grupos aleatórios.{" "}
+          <span className="text-gold">Compare o que cada um realmente fez.</span>
+        </h1>
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+          O guia comparativo definitivo que coloca lado a lado o que Lula e Bolsonaro realmente
+          fizeram, fundamentado estritamente em dados oficiais — através de uma triagem em 4
+          camadas que separa Fato, Interpretação e Acusação.
+        </p>
+
+        <div className="mt-10 w-full max-w-xs">
           <div className="rounded-2xl bg-card p-6 shadow-card-lg">
-              <img
-                src={cover}
-                width={1920}
-                height={1920}
-                alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
-                className="w-64 max-w-full rounded-lg md:w-80"
-              />
+            <img
+              src={cover}
+              width={1920}
+              height={1920}
+              alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
+              className="mx-auto w-56 max-w-full rounded-lg md:w-64"
+            />
             <p className="mt-4 flex items-start gap-2 text-left text-xs leading-relaxed text-muted-foreground">
               <Lock aria-hidden="true" className="mt-0.5 size-3.5 shrink-0 text-gold" />
               <span>
@@ -215,6 +196,25 @@ function Hero() {
             </p>
           </div>
         </div>
+
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <CtaLink href="#oferta" tone="gold" size="lg" location="hero_primary">
+            QUERO ACESSAR O GUIA COMPARATIVO
+          </CtaLink>
+          <CtaLink href="#metodo" tone="quiet" size="md" location="hero_secondary">
+            <PlayCircle aria-hidden="true" className="size-5" />
+            Ver como funciona
+          </CtaLink>
+        </div>
+        <dl className="mt-10 flex flex-wrap justify-center gap-x-10 gap-y-4">
+          {stats.map((s) => (
+            <div key={s.rotulo}>
+              <dt className="sr-only">{s.rotulo}</dt>
+              <dd className="font-display text-2xl font-extrabold md:text-3xl">{s.valor}</dd>
+              <dd className="mt-0.5 text-sm text-muted-foreground">{s.rotulo}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );
