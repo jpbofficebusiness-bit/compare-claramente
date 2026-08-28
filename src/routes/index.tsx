@@ -5,12 +5,16 @@ import {
   BookOpenCheck,
   EyeOff,
   FileCheck2,
+  Instagram,
   Lock,
+  Mail,
+  MessageCircle,
   PlayCircle,
   Quote,
   Scale,
   ShieldCheck,
   Star,
+  TrendingUp,
 } from "lucide-react";
 import cover from "@/assets/ebook-cover.png";
 import { CtaLink } from "@/components/landing/cta-button";
@@ -134,6 +138,7 @@ function LandingPage() {
         <Identificacao />
         <Implicacoes />
         <Mecanismo />
+        <GraficoIndecisos />
         <ProvaSocial />
         <TabelaComparativa />
         <Oferta />
