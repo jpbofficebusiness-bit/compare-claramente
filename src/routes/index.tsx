@@ -435,6 +435,7 @@ function ProvaSocial() {
               nome: "Carlos M.",
               papel: "Engenheiro",
               iniciais: "CM",
+              foto: avatarCarlos,
               rede: { icon: MessageCircle, nome: "WhatsApp", cor: "text-[#25D366]" },
             },
             {
@@ -443,6 +444,7 @@ function ProvaSocial() {
               nome: "Mariana S.",
               papel: "Advogada",
               iniciais: "MS",
+              foto: avatarMariana,
               rede: { icon: Instagram, nome: "Instagram", cor: "text-[#E1306C]" },
             },
             {
@@ -451,6 +453,7 @@ function ProvaSocial() {
               nome: "Roberto T.",
               papel: "Professor de História",
               iniciais: "RT",
+              foto: avatarRoberto,
               rede: { icon: Mail, nome: "Gmail", cor: "text-[#EA4335]" },
             },
             {
@@ -459,6 +462,7 @@ function ProvaSocial() {
               nome: "Fernanda L.",
               papel: "Contadora",
               iniciais: "FL",
+              foto: avatarFernanda,
               rede: { icon: MessageCircle, nome: "WhatsApp", cor: "text-[#25D366]" },
             },
             {
@@ -467,6 +471,7 @@ function ProvaSocial() {
               nome: "João P.",
               papel: "Empresário",
               iniciais: "JP",
+              foto: avatarJoao,
               rede: { icon: Instagram, nome: "Instagram", cor: "text-[#E1306C]" },
             },
             {
@@ -475,6 +480,7 @@ function ProvaSocial() {
               nome: "Aline R.",
               papel: "Estudante de Direito",
               iniciais: "AR",
+              foto: avatarAline,
               rede: { icon: Mail, nome: "Gmail", cor: "text-[#EA4335]" },
             },
           ].map((t) => (
@@ -483,12 +489,14 @@ function ProvaSocial() {
               className="flex flex-col rounded-xl border border-border bg-card p-6 shadow-card transition-shadow hover:shadow-card-lg"
             >
               <div className="flex items-center gap-3">
-                <span
-                  aria-hidden="true"
-                  className="flex size-11 items-center justify-center rounded-full bg-gold/15 font-display text-sm font-bold text-gold"
-                >
-                  {t.iniciais}
-                </span>
+                <img
+                  src={t.foto}
+                  alt={`Foto de ${t.nome}, ${t.papel}`}
+                  width={512}
+                  height={512}
+                  loading="lazy"
+                  className="size-11 shrink-0 rounded-full object-cover"
+                />
                 <span className="flex-1">
                   <span className="block text-sm font-bold">{t.nome}</span>
                   <span className="block text-sm text-muted-foreground">{t.papel}</span>
