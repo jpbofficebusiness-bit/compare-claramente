@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowRight,
   BookOpenCheck,
@@ -14,6 +14,7 @@ import {
   Scale,
   ShieldCheck,
   Star,
+  Timer,
   TrendingUp,
 } from "lucide-react";
 import cover from "@/assets/ebook-cover.png";
