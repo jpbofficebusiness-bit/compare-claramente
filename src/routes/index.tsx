@@ -17,6 +17,12 @@ import {
   TrendingUp,
 } from "lucide-react";
 import cover from "@/assets/ebook-cover.png";
+import avatarCarlos from "@/assets/avatars/carlos.jpg";
+import avatarMariana from "@/assets/avatars/mariana.jpg";
+import avatarRoberto from "@/assets/avatars/roberto.jpg";
+import avatarFernanda from "@/assets/avatars/fernanda.jpg";
+import avatarJoao from "@/assets/avatars/joao.jpg";
+import avatarAline from "@/assets/avatars/aline.jpg";
 import { CtaLink } from "@/components/landing/cta-button";
 import { track } from "@/lib/analytics";
 
