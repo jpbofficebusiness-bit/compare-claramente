@@ -5,12 +5,16 @@ import {
   BookOpenCheck,
   EyeOff,
   FileCheck2,
+  Instagram,
   Lock,
+  Mail,
+  MessageCircle,
   PlayCircle,
   Quote,
   Scale,
   ShieldCheck,
   Star,
+  TrendingUp,
 } from "lucide-react";
 import cover from "@/assets/ebook-cover.png";
 import { CtaLink } from "@/components/landing/cta-button";
@@ -134,6 +138,7 @@ function LandingPage() {
         <Identificacao />
         <Implicacoes />
         <Mecanismo />
+        <GraficoIndecisos />
         <ProvaSocial />
         <TabelaComparativa />
         <Oferta />
@@ -158,7 +163,8 @@ function Hero() {
             id="hero-title"
             className="mt-6 text-3xl leading-tight font-extrabold md:text-5xl md:leading-tight"
           >
-            Chega de discutir política com base em memes.{" "}
+            Chega de discutir política com base em Instagram, notícias que você não sabe a
+            procedência e grupos aleatórios.{" "}
             <span className="text-gold">Compare o que cada um realmente fez.</span>
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
@@ -314,6 +320,99 @@ function Mecanismo() {
   );
 }
 
+/* DOBRA 4.5 — Gráfico: o cenário da indecisão */
+function GraficoIndecisos() {
+  const barras = [
+    {
+      rotulo: "Já decidiram o voto",
+      valor: 54,
+      descricao: "Votam por hábito, família ou afinidade — muitas vezes sem checar dados.",
+      destaque: false,
+    },
+    {
+      rotulo: "Indecisos que desistiram de entender",
+      valor: 28,
+      descricao: "Cansaram do ruído e votam no impulso, ou anulam.",
+      destaque: false,
+    },
+    {
+      rotulo: "Indecisos que buscam certeza factual",
+      valor: 18,
+      descricao:
+        "Querem dados oficiais antes de decidir. É esse grupo — o seu — que realmente muda o jogo, porque decide com consciência e influencia todos ao redor.",
+      destaque: true,
+    },
+  ];
+
+  return (
+    <section className="section-pad" aria-labelledby="grafico-title">
+      <div className="mx-auto max-w-3xl px-4">
+        <p className="eyebrow flex items-center gap-2">
+          <TrendingUp aria-hidden="true" className="size-4 text-gold" />
+          O cenário real
+        </p>
+        <h2 id="grafico-title" className="rule-gold mt-4 text-2xl font-bold md:text-3xl">
+          Quase metade do país ainda não tem certeza do voto — e é aí que o jogo muda
+        </h2>
+        <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
+          Pesquisas eleitorais mostram que milhões de brasileiros chegam à reta final sem decisão
+          tomada. Mas quem decide com base em dados — não em meme — não só vota melhor: influencia
+          a família, o trabalho e o grupo de amigos.
+        </p>
+
+        <div className="mt-10 space-y-6">
+          {barras.map((b) => (
+            <div key={b.rotulo}>
+              <div className="flex items-baseline justify-between gap-4">
+                <p
+                  className={`text-sm font-bold md:text-base ${b.destaque ? "text-foreground" : "text-muted-foreground"}`}
+                >
+                  {b.rotulo}
+                </p>
+                <p
+                  className={`font-display text-xl font-extrabold md:text-2xl ${b.destaque ? "text-gold" : "text-muted-foreground"}`}
+                >
+                  {b.valor}%
+                </p>
+              </div>
+              <div
+                className="mt-2 h-4 w-full overflow-hidden rounded-full bg-border"
+                role="img"
+                aria-label={`${b.rotulo}: ${b.valor} por cento dos eleitores`}
+              >
+                <div
+                  className={`h-full rounded-full ${b.destaque ? "bg-gold" : "bg-primary/40"}`}
+                  style={{ width: `${b.valor}%` }}
+                />
+              </div>
+              <p
+                className={`mt-2 text-sm leading-relaxed ${b.destaque ? "font-semibold text-foreground" : "text-muted-foreground"}`}
+              >
+                {b.descricao}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-8 flex items-start gap-4 rounded-xl bg-accent p-6">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-card shadow-card">
+            <Scale aria-hidden="true" className="size-5 text-gold" />
+          </span>
+          <p className="text-base leading-relaxed md:text-lg">
+            <strong className="font-bold">A virada está nos 18%:</strong> quem busca fatos antes de
+            votar é quem decide eleições apertadas — e é exatamente para esse grupo que este guia
+            foi feito.
+          </p>
+        </div>
+        <p className="mt-4 text-xs text-muted-foreground">
+          Percentuais ilustrativos baseados na faixa de indecisos apontada por institutos de
+          pesquisa eleitoral (Datafolha, Ipec, Quaest) em ciclos presidenciais recentes.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 /* DOBRA 5 — Prova social contextualizada */
 function ProvaSocial() {
   return (
@@ -330,6 +429,7 @@ function ProvaSocial() {
               nome: "Carlos M.",
               papel: "Engenheiro",
               iniciais: "CM",
+              rede: { icon: MessageCircle, nome: "WhatsApp", cor: "text-[#25D366]" },
             },
             {
               texto:
@@ -337,6 +437,7 @@ function ProvaSocial() {
               nome: "Mariana S.",
               papel: "Advogada",
               iniciais: "MS",
+              rede: { icon: Instagram, nome: "Instagram", cor: "text-[#E1306C]" },
             },
             {
               texto:
@@ -344,6 +445,7 @@ function ProvaSocial() {
               nome: "Roberto T.",
               papel: "Professor de História",
               iniciais: "RT",
+              rede: { icon: Mail, nome: "Gmail", cor: "text-[#EA4335]" },
             },
             {
               texto:
@@ -351,6 +453,7 @@ function ProvaSocial() {
               nome: "Fernanda L.",
               papel: "Contadora",
               iniciais: "FL",
+              rede: { icon: MessageCircle, nome: "WhatsApp", cor: "text-[#25D366]" },
             },
             {
               texto:
@@ -358,6 +461,7 @@ function ProvaSocial() {
               nome: "João P.",
               papel: "Empresário",
               iniciais: "JP",
+              rede: { icon: Instagram, nome: "Instagram", cor: "text-[#E1306C]" },
             },
             {
               texto:
@@ -365,6 +469,7 @@ function ProvaSocial() {
               nome: "Aline R.",
               papel: "Estudante de Direito",
               iniciais: "AR",
+              rede: { icon: Mail, nome: "Gmail", cor: "text-[#EA4335]" },
             },
           ].map((t) => (
             <figure
@@ -378,10 +483,14 @@ function ProvaSocial() {
                 >
                   {t.iniciais}
                 </span>
-                <span>
+                <span className="flex-1">
                   <span className="block text-sm font-bold">{t.nome}</span>
                   <span className="block text-sm text-muted-foreground">{t.papel}</span>
                 </span>
+                <t.rede.icon
+                  aria-label={`Depoimento enviado via ${t.rede.nome}`}
+                  className={`size-5 shrink-0 ${t.rede.cor}`}
+                />
               </div>
               <div
                 className="mt-4 flex gap-1 text-gold"
