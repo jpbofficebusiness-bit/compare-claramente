@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowRight,
   BookOpenCheck,
@@ -14,6 +14,7 @@ import {
   Scale,
   ShieldCheck,
   Star,
+  Timer,
   TrendingUp,
 } from "lucide-react";
 import cover from "@/assets/ebook-cover.png";
@@ -138,6 +139,7 @@ function LandingPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <BarraEscassez />
       <main>
         <Hero />
         <FaixaConfianca />
@@ -151,6 +153,40 @@ function LandingPage() {
       </main>
       <Footer />
       <MobileBar />
+    </div>
+  );
+}
+
+/* Barra de escassez — topo */
+function BarraEscassez() {
+  const [restam, setRestam] = useState(2 * 60 * 60);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setRestam((s) => (s > 0 ? s - 1 : 0));
+    }, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  const h = Math.floor(restam / 3600);
+  const m = Math.floor((restam % 3600) / 60);
+  const s = restam % 60;
+  const tempo = `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+
+  return (
+    <div className="bg-primary text-primary-foreground">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-2 px-4 py-3 text-center sm:flex-row sm:gap-4 sm:py-2.5">
+        <p className="flex items-center gap-2 text-sm font-semibold sm:text-base">
+          <Timer aria-hidden="true" className="size-4 text-gold" />
+          Oferta especial acaba em 2 horas
+        </p>
+        <span
+          className="rounded-md bg-gold px-3 py-1 font-mono text-sm font-bold text-gold-foreground tabular-nums"
+          aria-live="polite"
+        >
+          {tempo}
+        </span>
+      </div>
     </div>
   );
 }
