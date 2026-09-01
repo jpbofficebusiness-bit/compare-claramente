@@ -17,7 +17,7 @@ import {
   Timer,
   TrendingUp,
 } from "lucide-react";
-import cover from "@/assets/ebook-cover.png";
+import cover from "@/assets/ebook-cover-new.jpg.asset.json";
 import avatarCarlos from "@/assets/avatars/carlos.jpg";
 import avatarMariana from "@/assets/avatars/mariana.jpg";
 import avatarRoberto from "@/assets/avatars/roberto.jpg";
