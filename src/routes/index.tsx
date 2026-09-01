@@ -17,7 +17,7 @@ import {
   Timer,
   TrendingUp,
 } from "lucide-react";
-import cover from "@/assets/ebook-cover.png";
+import cover from "@/assets/ebook-cover-new.jpg.asset.json";
 import avatarCarlos from "@/assets/avatars/carlos.jpg";
 import avatarMariana from "@/assets/avatars/mariana.jpg";
 import avatarRoberto from "@/assets/avatars/roberto.jpg";
@@ -217,7 +217,7 @@ function Hero() {
         <div className="mt-10 w-full max-w-xs">
           <div className="rounded-2xl bg-card p-6 shadow-card-lg">
             <img
-              src={cover}
+              src={cover.url}
               width={1920}
               height={1920}
               alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
@@ -636,7 +636,7 @@ function Oferta() {
             </div>
             <div className="flex justify-center">
               <img
-                src={cover}
+                src={cover.url}
                 width={1920}
                 height={1920}
                 loading="lazy"
