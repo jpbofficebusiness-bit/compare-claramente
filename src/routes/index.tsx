@@ -308,9 +308,9 @@ function Mecanismo() {
           {passos.map((p) => (
             <li
               key={p.n}
-              className="rounded-xl border border-border bg-card p-6 shadow-card transition-shadow hover:shadow-card-lg"
+              className="border border-border bg-card p-6 shadow-card transition-shadow hover:shadow-card-lg"
             >
-              <span className="flex size-10 items-center justify-center rounded-lg bg-gold font-display text-lg font-extrabold text-gold-foreground">
+              <span className="flex size-10 items-center justify-center bg-gold font-display text-lg font-extrabold text-gold-foreground">
                 {p.n}
               </span>
               <h3 className="mt-4 font-display text-base font-bold tracking-tight">{p.t}</h3>
@@ -318,8 +318,8 @@ function Mecanismo() {
             </li>
           ))}
         </ol>
-        <div className="mt-10 flex items-start gap-4 rounded-xl bg-accent p-6 md:p-8">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-card shadow-card">
+        <div className="mt-10 flex items-start gap-4 border border-foreground bg-accent p-6 md:p-8">
+          <span className="flex size-10 shrink-0 items-center justify-center bg-card shadow-card">
             <BookOpenCheck aria-hidden="true" className="size-5 text-gold" />
           </span>
           <p className="text-base leading-relaxed md:text-lg">
@@ -373,10 +373,10 @@ function GraficoIndecisos() {
           a família, o trabalho e o grupo de amigos.
         </p>
 
-        <div className="mt-10 space-y-6">
+        <div className="mt-10 border-y border-foreground">
           {barras.map((b) => (
-            <div key={b.rotulo}>
-              <div className="flex items-baseline justify-between gap-4">
+            <div key={b.rotulo} className="grid gap-4 border-b border-foreground py-6 last:border-b-0 md:grid-cols-[1fr_2fr] md:items-center">
+              <div className="flex items-baseline justify-between gap-4 md:block">
                 <p
                   className={`text-sm font-bold md:text-base ${b.destaque ? "text-foreground" : "text-muted-foreground"}`}
                 >
@@ -388,27 +388,18 @@ function GraficoIndecisos() {
                   {b.valor}%
                 </p>
               </div>
-              <div
-                className="mt-2 h-4 w-full overflow-hidden rounded-full bg-border"
-                role="img"
-                aria-label={`${b.rotulo}: ${b.valor} por cento dos eleitores`}
-              >
-                <div
-                  className={`h-full rounded-full ${b.destaque ? "bg-gold" : "bg-primary/40"}`}
-                  style={{ width: `${b.valor}%` }}
-                />
+              <div className="border-l border-foreground pl-4 md:pl-6">
+                <div className="flex h-3 w-full items-center border-y border-foreground" role="img" aria-label={`${b.rotulo}: ${b.valor} por cento dos eleitores`}>
+                  <div className={`${b.destaque ? "bg-gold" : "bg-foreground"} h-[3px]`} style={{ width: `${b.valor}%` }} />
+                </div>
+                <p className={`mt-3 text-sm leading-relaxed ${b.destaque ? "font-semibold text-foreground" : "text-muted-foreground"}`}>{b.descricao}</p>
               </div>
-              <p
-                className={`mt-2 text-sm leading-relaxed ${b.destaque ? "font-semibold text-foreground" : "text-muted-foreground"}`}
-              >
-                {b.descricao}
-              </p>
             </div>
           ))}
         </div>
 
-        <div className="mt-8 flex items-start gap-4 rounded-xl bg-accent p-6">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-card shadow-card">
+        <div className="mt-8 flex items-start gap-4 border border-foreground p-6">
+          <span className="flex size-10 shrink-0 items-center justify-center border border-foreground bg-card">
             <Scale aria-hidden="true" className="size-5 text-gold" />
           </span>
           <p className="text-base leading-relaxed md:text-lg">
@@ -443,7 +434,7 @@ function ProvaSocial() {
               papel: "Engenheiro",
               iniciais: "CM",
               foto: avatarCarlos,
-              rede: { icon: MessageCircle, nome: "WhatsApp", cor: "text-[#25D366]" },
+               rede: { icon: MessageCircle, nome: "WhatsApp" },
             },
             {
               texto:
@@ -452,7 +443,7 @@ function ProvaSocial() {
               papel: "Advogada",
               iniciais: "MS",
               foto: avatarMariana,
-              rede: { icon: Instagram, nome: "Instagram", cor: "text-[#E1306C]" },
+               rede: { icon: Instagram, nome: "Instagram" },
             },
             {
               texto:
@@ -461,7 +452,7 @@ function ProvaSocial() {
               papel: "Professor de História",
               iniciais: "RT",
               foto: avatarRoberto,
-              rede: { icon: Mail, nome: "Gmail", cor: "text-[#EA4335]" },
+               rede: { icon: Mail, nome: "Gmail" },
             },
             {
               texto:
@@ -470,7 +461,7 @@ function ProvaSocial() {
               papel: "Contadora",
               iniciais: "FL",
               foto: avatarFernanda,
-              rede: { icon: MessageCircle, nome: "WhatsApp", cor: "text-[#25D366]" },
+               rede: { icon: MessageCircle, nome: "WhatsApp" },
             },
             {
               texto:
@@ -479,7 +470,7 @@ function ProvaSocial() {
               papel: "Empresário",
               iniciais: "JP",
               foto: avatarJoao,
-              rede: { icon: Instagram, nome: "Instagram", cor: "text-[#E1306C]" },
+               rede: { icon: Instagram, nome: "Instagram" },
             },
             {
               texto:
@@ -488,21 +479,25 @@ function ProvaSocial() {
               papel: "Estudante de Direito",
               iniciais: "AR",
               foto: avatarAline,
-              rede: { icon: Mail, nome: "Gmail", cor: "text-[#EA4335]" },
+               rede: { icon: Mail, nome: "Gmail" },
             },
           ].map((t) => (
             <figure
               key={t.nome}
-              className="flex flex-col rounded-xl border border-border bg-card p-6 shadow-card transition-shadow hover:shadow-card-lg"
+              className="relative flex flex-col border-t border-foreground bg-transparent py-8 sm:odd:pr-7 sm:even:border-l sm:even:pl-7"
             >
-              <div className="flex items-center gap-3">
+              <Quote aria-hidden="true" className="mb-5 size-8 text-gold" />
+              <blockquote className="flex-1 font-display text-lg leading-relaxed md:text-xl">
+                “{t.texto}”
+              </blockquote>
+              <figcaption className="mt-7 flex items-center gap-3 border-t border-border pt-4">
                 <img
                   src={t.foto}
                   alt={`Foto de ${t.nome}, ${t.papel}`}
                   width={512}
                   height={512}
                   loading="lazy"
-                  className="size-11 shrink-0 rounded-full object-cover"
+                  className="size-11 shrink-0 rounded-[2px] object-cover grayscale"
                 />
                 <span className="flex-1">
                   <span className="block text-sm font-bold">{t.nome}</span>
@@ -510,21 +505,9 @@ function ProvaSocial() {
                 </span>
                 <t.rede.icon
                   aria-label={`Depoimento enviado via ${t.rede.nome}`}
-                  className={`size-5 shrink-0 ${t.rede.cor}`}
+                  className="size-5 shrink-0 text-gold"
                 />
-              </div>
-              <div
-                className="mt-4 flex gap-1 text-gold"
-                role="img"
-                aria-label="Avaliação: 5 de 5 estrelas"
-              >
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} aria-hidden="true" className="size-4 fill-current" />
-                ))}
-              </div>
-              <blockquote className="mt-3 flex-1 text-base leading-relaxed">
-                "{t.texto}"
-              </blockquote>
+              </figcaption>
             </figure>
           ))}
         </div>
@@ -541,14 +524,14 @@ function TabelaComparativa() {
         <h2 id="tabela-title" className="rule-gold text-2xl font-bold md:text-3xl">
           Como você prefere se informar a partir de hoje?
         </h2>
-        <div className="mt-10 overflow-x-auto rounded-xl border border-border bg-card shadow-card">
+        <div className="mt-10 overflow-x-auto border-y border-foreground">
           <table className="w-full min-w-[34rem] border-collapse text-left text-sm md:text-base">
             <caption className="sr-only">
               Comparação entre se informar pelas redes sociais, pelo Google ou pelo guia
               comparativo, segundo origem, isenção e tempo.
             </caption>
             <thead>
-              <tr className="border-b border-border bg-secondary">
+              <tr className="border-b border-foreground">
                 <th scope="col" className="px-5 py-4 font-bold">
                   Critério
                 </th>
@@ -558,20 +541,20 @@ function TabelaComparativa() {
                 <th scope="col" className="px-5 py-4 font-bold">
                   Google
                 </th>
-                <th scope="col" className="px-5 py-4 font-bold text-gold">
+                <th scope="col" className="bg-secondary px-5 py-4 font-bold text-foreground">
                   O Nosso Guia
                 </th>
               </tr>
             </thead>
             <tbody>
               {comparativo.map(([criterio, redes, google, guia]) => (
-                <tr key={criterio} className="border-b border-border last:border-0">
+                <tr key={criterio} className="border-b border-foreground last:border-0">
                   <th scope="row" className="px-5 py-4 font-semibold">
                     {criterio}
                   </th>
                   <td className="px-5 py-4 text-muted-foreground">{redes}</td>
                   <td className="px-5 py-4 text-muted-foreground">{google}</td>
-                  <td className="bg-accent/50 px-5 py-4 font-semibold text-foreground">{guia}</td>
+                  <td className="bg-secondary px-5 py-4 font-semibold text-foreground">{guia}</td>
                 </tr>
               ))}
             </tbody>
@@ -587,7 +570,7 @@ function Oferta() {
   return (
     <section id="oferta" className="section-pad bg-secondary" aria-labelledby="oferta-title">
       <div className="mx-auto max-w-3xl px-4">
-        <div className="rounded-2xl bg-card p-8 shadow-card-lg md:p-10">
+        <div className="border border-foreground bg-card p-8 shadow-card-lg md:p-10">
           <div className="grid items-center gap-10 md:grid-cols-[1fr_auto]">
             <div>
               <p className="eyebrow">Acesso completo</p>
@@ -612,14 +595,14 @@ function Oferta() {
                 height={1920}
                 loading="lazy"
                 alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
-                className="w-56 max-w-full rounded-lg shadow-cover md:w-64"
+                className="w-56 max-w-full rounded-[2px] shadow-cover md:w-64"
               />
             </div>
           </div>
         </div>
 
-        <div className="mt-8 flex items-start gap-4 rounded-xl border border-gold/30 bg-accent p-6 md:p-8">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-card shadow-card">
+        <div className="mt-8 flex items-start gap-4 border border-foreground bg-accent p-6 md:p-8">
+          <span className="flex size-10 shrink-0 items-center justify-center border border-foreground bg-card shadow-card">
             <FileCheck2 aria-hidden="true" className="size-5 text-gold" />
           </span>
           <div>
@@ -640,7 +623,7 @@ function Oferta() {
             {faq.map((f) => (
               <details
                 key={f.q}
-                className="group rounded-xl border border-border bg-card px-6 py-5 shadow-card"
+                className="group rounded-[2px] border border-border bg-card px-6 py-5 shadow-card"
               >
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-bold marker:hidden">
                   {f.q}
