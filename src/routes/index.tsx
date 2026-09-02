@@ -16,7 +16,6 @@ import {
   TrendingUp,
 } from "lucide-react";
 import cover from "@/assets/ebook-cover-new.jpg.asset.json";
-import studioCover from "@/assets/ebook-studio.jpg";
 import avatarCarlos from "@/assets/avatars/carlos.jpg";
 import avatarMariana from "@/assets/avatars/mariana.jpg";
 import avatarRoberto from "@/assets/avatars/roberto.jpg";
@@ -212,7 +211,7 @@ function Hero() {
           </figure>
           <figure className="col-span-7 border border-foreground bg-card p-3 shadow-card md:col-span-4 md:row-span-2 md:p-5">
             <img
-              src={studioCover}
+              src="/ebook-studio.jpg"
               width={1024}
               height={1024}
               alt="Fotografia de estúdio do guia comparativo em edição de capa dura"
