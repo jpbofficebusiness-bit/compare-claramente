@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   ArrowRight,
   BookOpenCheck,
@@ -13,11 +13,10 @@ import {
   Quote,
   Scale,
   ShieldCheck,
-  Star,
-  Timer,
   TrendingUp,
 } from "lucide-react";
 import cover from "@/assets/ebook-cover-new.jpg.asset.json";
+import studioCover from "@/assets/ebook-studio.jpg";
 import avatarCarlos from "@/assets/avatars/carlos.jpg";
 import avatarMariana from "@/assets/avatars/mariana.jpg";
 import avatarRoberto from "@/assets/avatars/roberto.jpg";
@@ -96,9 +95,9 @@ const passos = [
 ];
 
 const dores = [
-  "Quantas vezes você preferiu se calar em um debate pelo receio de citar um dado incorreto, ser corrigido publicamente e passar vergonha?",
-  "Qual é o custo emocional de deixar que discussões geradas por boatos desgastem as suas relações familiares mais importantes?",
-  "Quantas horas do seu dia você já perdeu garimpando matérias soltas, apenas para desistir no meio do caminho, mais confuso e exausto?",
+  { antes: "Quantas vezes você preferiu ", foco: "se calar em um debate", depois: " pelo receio de citar um dado incorreto, ser corrigido publicamente e passar vergonha?" },
+  { antes: "Qual é o custo emocional de deixar que ", foco: "discussões geradas por boatos", depois: " desgastem as suas relações familiares mais importantes?" },
+  { antes: "Quantas horas do seu dia você já perdeu ", foco: "garimpando matérias soltas", depois: ", apenas para desistir no meio do caminho, mais confuso e exausto?" },
 ];
 
 const comparativo = [
@@ -139,7 +138,6 @@ function LandingPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <BarraEscassez />
       <main>
         <Hero />
         <FaixaConfianca />
@@ -157,52 +155,19 @@ function LandingPage() {
   );
 }
 
-/* Barra de escassez — topo */
-function BarraEscassez() {
-  const [restam, setRestam] = useState(2 * 60 * 60);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setRestam((s) => (s > 0 ? s - 1 : 0));
-    }, 1000);
-    return () => clearInterval(id);
-  }, []);
-
-  const h = Math.floor(restam / 3600);
-  const m = Math.floor((restam % 3600) / 60);
-  const s = restam % 60;
-  const tempo = `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
-
-  return (
-    <div className="bg-primary text-primary-foreground">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-2 px-4 py-3 text-center sm:flex-row sm:gap-4 sm:py-2.5">
-        <p className="flex items-center gap-2 text-sm font-semibold sm:text-base">
-          <Timer aria-hidden="true" className="size-4 text-gold" />
-          Oferta especial acaba em 2 horas
-        </p>
-        <span
-          className="rounded-md bg-gold px-3 py-1 font-mono text-sm font-bold text-gold-foreground tabular-nums"
-          aria-live="polite"
-        >
-          {tempo}
-        </span>
-      </div>
-    </div>
-  );
-}
-
 /* DOBRA 1 — Hero: a promessa */
 function Hero() {
   return (
-    <section className="bg-secondary" aria-labelledby="hero-title">
-      <div className="mx-auto flex max-w-3xl flex-col items-center px-4 py-16 text-center md:py-24">
+    <section className="border-b border-foreground bg-secondary" aria-labelledby="hero-title">
+      <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
+        <div className="mx-auto max-w-4xl text-center">
         <span className="pill-badge">
           <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
           E-book · Guia comparativo
         </span>
         <h1
           id="hero-title"
-          className="mt-6 text-3xl leading-tight font-extrabold md:text-5xl md:leading-tight"
+          className="mt-6 text-3xl leading-tight font-bold md:text-5xl md:leading-tight"
         >
           Chega de discutir política com base em Instagram, notícias que você não sabe a
           procedência e grupos aleatórios.{" "}
@@ -214,26 +179,34 @@ function Hero() {
           camadas que separa Fato, Interpretação e Acusação.
         </p>
 
-        <div className="mt-10 w-full max-w-xs">
-          <div className="rounded-2xl bg-card p-6 shadow-card-lg">
+        </div>
+
+        <div className="mt-12 grid grid-cols-12 gap-3 md:gap-5" aria-label="Showcase visual do dossiê">
+          <figure className="col-span-12 border border-foreground bg-card p-3 shadow-card-lg md:col-span-8 md:p-5">
             <img
               src={cover.url}
               width={1920}
               height={1920}
               alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
-              className="mx-auto w-56 max-w-full rounded-lg md:w-64"
+              className="aspect-[16/9] w-full object-cover"
             />
-            <p className="mt-4 flex items-start gap-2 text-left text-xs leading-relaxed text-muted-foreground">
+            <figcaption className="mt-4 flex items-start gap-2 text-left text-xs leading-relaxed text-muted-foreground">
               <Lock aria-hidden="true" className="mt-0.5 size-3.5 shrink-0 text-gold" />
               <span>
-                Dados com links diretos para as bases oficiais do IBGE, STF, TSE, INPE e Tesouro
-                Nacional.
+                Dossiê comparativo · 36 páginas · fontes oficiais rastreáveis
               </span>
-            </p>
-          </div>
+            </figcaption>
+          </figure>
+          <figure className="col-span-7 border border-foreground bg-card p-3 shadow-card md:col-span-4 md:row-span-2 md:p-5">
+            <img src={studioCover} width={1024} height={1024} alt="Fotografia de estúdio do guia comparativo em edição de capa dura" className="h-full min-h-52 w-full object-cover md:min-h-96" />
+          </figure>
+          <aside className="col-span-5 flex flex-col justify-between border border-foreground bg-primary p-4 text-left text-primary-foreground shadow-card md:col-span-8 md:flex-row md:items-end md:p-6">
+            <p className="font-display text-3xl font-bold md:text-5xl">36</p>
+            <p className="max-w-md text-sm leading-relaxed md:text-base">páginas de fatos organizados para consulta, comparação e decisão consciente.</p>
+          </aside>
         </div>
 
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <CtaLink href="#oferta" tone="gold" size="lg" location="hero_primary">
             QUERO ACESSAR O GUIA COMPARATIVO
           </CtaLink>
@@ -242,7 +215,7 @@ function Hero() {
             Ver como funciona
           </CtaLink>
         </div>
-        <dl className="mt-10 flex flex-wrap justify-center gap-x-10 gap-y-4">
+        <dl className="mt-10 flex flex-wrap justify-center gap-x-10 gap-y-4 text-center">
           {stats.map((s) => (
             <div key={s.rotulo}>
               <dt className="sr-only">{s.rotulo}</dt>
@@ -299,18 +272,16 @@ function Identificacao() {
 /* DOBRA 3 — Implicações: a dor */
 function Implicacoes() {
   return (
-    <section className="section-pad bg-secondary" aria-labelledby="dor-title">
-      <div className="mx-auto max-w-3xl px-4">
+    <section className="section-pad bg-primary text-primary-foreground" aria-labelledby="dor-title">
+      <div className="mx-auto max-w-5xl px-4">
         <h2 id="dor-title" className="rule-gold text-2xl font-bold md:text-3xl">
           O custo invisível de não ter dados seguros na mão
         </h2>
-        <ul className="mt-10 space-y-5">
+        <ul className="mt-10 grid gap-4 md:grid-cols-3">
           {dores.map((d) => (
-            <li key={d} className="flex gap-4 rounded-xl bg-card p-6 shadow-card">
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-accent">
-                <Quote aria-hidden="true" className="size-5 text-gold" />
-              </span>
-              <p className="text-base leading-relaxed md:text-lg">{d}</p>
+            <li key={d.foco} className="border border-primary-foreground/40 bg-primary p-7 text-left shadow-card md:min-h-72">
+              <Quote aria-hidden="true" className="size-7 text-gold" />
+              <p className="mt-8 text-base leading-relaxed md:text-lg">{d.antes}<strong className="font-bold text-gold">{d.foco}</strong>{d.depois}</p>
             </li>
           ))}
         </ul>
