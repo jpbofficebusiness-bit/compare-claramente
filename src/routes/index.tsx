@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   ArrowRight,
   BookOpenCheck,
@@ -13,8 +13,6 @@ import {
   Quote,
   Scale,
   ShieldCheck,
-  Star,
-  Timer,
   TrendingUp,
 } from "lucide-react";
 import cover from "@/assets/ebook-cover-new.jpg.asset.json";
@@ -96,9 +94,22 @@ const passos = [
 ];
 
 const dores = [
-  "Quantas vezes você preferiu se calar em um debate pelo receio de citar um dado incorreto, ser corrigido publicamente e passar vergonha?",
-  "Qual é o custo emocional de deixar que discussões geradas por boatos desgastem as suas relações familiares mais importantes?",
-  "Quantas horas do seu dia você já perdeu garimpando matérias soltas, apenas para desistir no meio do caminho, mais confuso e exausto?",
+  {
+    antes: "Quantas vezes você preferiu ",
+    foco: "se calar em um debate",
+    depois:
+      " pelo receio de citar um dado incorreto, ser corrigido publicamente e passar vergonha?",
+  },
+  {
+    antes: "Qual é o custo emocional de deixar que ",
+    foco: "discussões geradas por boatos",
+    depois: " desgastem as suas relações familiares mais importantes?",
+  },
+  {
+    antes: "Quantas horas do seu dia você já perdeu ",
+    foco: "garimpando matérias soltas",
+    depois: ", apenas para desistir no meio do caminho, mais confuso e exausto?",
+  },
 ];
 
 const comparativo = [
@@ -139,7 +150,6 @@ function LandingPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <BarraEscassez />
       <main>
         <Hero />
         <FaixaConfianca />
@@ -157,83 +167,66 @@ function LandingPage() {
   );
 }
 
-/* Barra de escassez — topo */
-function BarraEscassez() {
-  const [restam, setRestam] = useState(2 * 60 * 60);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setRestam((s) => (s > 0 ? s - 1 : 0));
-    }, 1000);
-    return () => clearInterval(id);
-  }, []);
-
-  const h = Math.floor(restam / 3600);
-  const m = Math.floor((restam % 3600) / 60);
-  const s = restam % 60;
-  const tempo = `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
-
-  return (
-    <div className="bg-primary text-primary-foreground">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-2 px-4 py-3 text-center sm:flex-row sm:gap-4 sm:py-2.5">
-        <p className="flex items-center gap-2 text-sm font-semibold sm:text-base">
-          <Timer aria-hidden="true" className="size-4 text-gold" />
-          Oferta especial acaba em 2 horas
-        </p>
-        <span
-          className="rounded-md bg-gold px-3 py-1 font-mono text-sm font-bold text-gold-foreground tabular-nums"
-          aria-live="polite"
-        >
-          {tempo}
-        </span>
-      </div>
-    </div>
-  );
-}
-
 /* DOBRA 1 — Hero: a promessa */
 function Hero() {
   return (
-    <section className="bg-secondary" aria-labelledby="hero-title">
-      <div className="mx-auto flex max-w-3xl flex-col items-center px-4 py-16 text-center md:py-24">
-        <span className="pill-badge">
-          <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
-          E-book · Guia comparativo
-        </span>
-        <h1
-          id="hero-title"
-          className="mt-6 text-3xl leading-tight font-extrabold md:text-5xl md:leading-tight"
-        >
-          Chega de discutir política com base em Instagram, notícias que você não sabe a
-          procedência e grupos aleatórios.{" "}
-          <span className="text-gold">Compare o que cada um realmente fez.</span>
-        </h1>
-        <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-          O guia comparativo definitivo que coloca lado a lado o que Lula e Bolsonaro realmente
-          fizeram, fundamentado estritamente em dados oficiais — através de uma triagem em 4
-          camadas que separa Fato, Interpretação e Acusação.
-        </p>
+    <section className="border-b border-foreground bg-secondary" aria-labelledby="hero-title">
+      <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
+        <div className="mx-auto max-w-4xl text-center">
+          <span className="pill-badge">
+            <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
+            E-book · Guia comparativo
+          </span>
+          <h1
+            id="hero-title"
+            className="mt-6 text-3xl leading-tight font-bold md:text-5xl md:leading-tight"
+          >
+            Chega de discutir política com base em Instagram, notícias que você não sabe a
+            procedência e grupos aleatórios.{" "}
+            <span className="text-gold">Compare o que cada um realmente fez.</span>
+          </h1>
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+            O guia comparativo definitivo que coloca lado a lado o que Lula e Bolsonaro realmente
+            fizeram, fundamentado estritamente em dados oficiais — através de uma triagem em 4
+            camadas que separa Fato, Interpretação e Acusação.
+          </p>
+        </div>
 
-        <div className="mt-10 w-full max-w-xs">
-          <div className="rounded-2xl bg-card p-6 shadow-card-lg">
+        <div
+          className="mt-12 grid grid-cols-12 gap-3 md:gap-5"
+          aria-label="Showcase visual do dossiê"
+        >
+          <figure className="col-span-12 border border-foreground bg-card p-3 shadow-card-lg md:col-span-8 md:p-5">
             <img
               src={cover.url}
               width={1920}
               height={1920}
               alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
-              className="mx-auto w-56 max-w-full rounded-lg md:w-64"
+              className="aspect-[16/9] w-full object-cover"
             />
-            <p className="mt-4 flex items-start gap-2 text-left text-xs leading-relaxed text-muted-foreground">
+            <figcaption className="mt-4 flex items-start gap-2 text-left text-xs leading-relaxed text-muted-foreground">
               <Lock aria-hidden="true" className="mt-0.5 size-3.5 shrink-0 text-gold" />
-              <span>
-                Dados com links diretos para as bases oficiais do IBGE, STF, TSE, INPE e Tesouro
-                Nacional.
-              </span>
+              <span>Dossiê comparativo · 36 páginas · fontes oficiais rastreáveis</span>
+            </figcaption>
+          </figure>
+          <figure className="col-span-7 border border-foreground bg-card p-3 shadow-card md:col-span-4 md:row-span-2 md:p-5">
+            <img
+              src="/ebook-studio.jpg"
+              width={1024}
+              height={1024}
+              alt="Fotografia de estúdio do guia comparativo em edição de capa dura"
+              className="h-full min-h-52 w-full object-cover md:min-h-96"
+            />
+          </figure>
+          <aside className="col-span-5 flex flex-col justify-between border border-foreground bg-primary p-4 text-left text-primary-foreground shadow-card md:col-span-8 md:flex-row md:items-end md:p-6">
+            <p className="font-display text-3xl font-bold md:text-5xl">36</p>
+            <p className="max-w-md text-sm leading-relaxed md:text-base">
+              páginas de fatos organizados para consulta, comparação e decisão consciente.
             </p>
-          </div>
+          </aside>
         </div>
 
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <CtaLink href="#oferta" tone="gold" size="lg" location="hero_primary">
             QUERO ACESSAR O GUIA COMPARATIVO
           </CtaLink>
@@ -242,7 +235,7 @@ function Hero() {
             Ver como funciona
           </CtaLink>
         </div>
-        <dl className="mt-10 flex flex-wrap justify-center gap-x-10 gap-y-4">
+        <dl className="mt-10 flex flex-wrap justify-center gap-x-10 gap-y-4 text-center">
           {stats.map((s) => (
             <div key={s.rotulo}>
               <dt className="sr-only">{s.rotulo}</dt>
@@ -299,18 +292,23 @@ function Identificacao() {
 /* DOBRA 3 — Implicações: a dor */
 function Implicacoes() {
   return (
-    <section className="section-pad bg-secondary" aria-labelledby="dor-title">
-      <div className="mx-auto max-w-3xl px-4">
+    <section className="section-pad bg-primary text-primary-foreground" aria-labelledby="dor-title">
+      <div className="mx-auto max-w-5xl px-4">
         <h2 id="dor-title" className="rule-gold text-2xl font-bold md:text-3xl">
           O custo invisível de não ter dados seguros na mão
         </h2>
-        <ul className="mt-10 space-y-5">
+        <ul className="mt-10 grid gap-4 md:grid-cols-3">
           {dores.map((d) => (
-            <li key={d} className="flex gap-4 rounded-xl bg-card p-6 shadow-card">
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-accent">
-                <Quote aria-hidden="true" className="size-5 text-gold" />
-              </span>
-              <p className="text-base leading-relaxed md:text-lg">{d}</p>
+            <li
+              key={d.foco}
+              className="border border-primary-foreground/40 bg-primary p-7 text-left shadow-card md:min-h-72"
+            >
+              <Quote aria-hidden="true" className="size-7 text-gold" />
+              <p className="mt-8 text-base leading-relaxed md:text-lg">
+                {d.antes}
+                <strong className="font-bold text-gold">{d.foco}</strong>
+                {d.depois}
+              </p>
             </li>
           ))}
         </ul>
@@ -337,9 +335,9 @@ function Mecanismo() {
           {passos.map((p) => (
             <li
               key={p.n}
-              className="rounded-xl border border-border bg-card p-6 shadow-card transition-shadow hover:shadow-card-lg"
+              className="border border-border bg-card p-6 shadow-card transition-shadow hover:shadow-card-lg"
             >
-              <span className="flex size-10 items-center justify-center rounded-lg bg-gold font-display text-lg font-extrabold text-gold-foreground">
+              <span className="flex size-10 items-center justify-center bg-gold font-display text-lg font-extrabold text-gold-foreground">
                 {p.n}
               </span>
               <h3 className="mt-4 font-display text-base font-bold tracking-tight">{p.t}</h3>
@@ -347,8 +345,8 @@ function Mecanismo() {
             </li>
           ))}
         </ol>
-        <div className="mt-10 flex items-start gap-4 rounded-xl bg-accent p-6 md:p-8">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-card shadow-card">
+        <div className="mt-10 flex items-start gap-4 border border-foreground bg-accent p-6 md:p-8">
+          <span className="flex size-10 shrink-0 items-center justify-center bg-card shadow-card">
             <BookOpenCheck aria-hidden="true" className="size-5 text-gold" />
           </span>
           <p className="text-base leading-relaxed md:text-lg">
@@ -390,22 +388,24 @@ function GraficoIndecisos() {
     <section className="section-pad" aria-labelledby="grafico-title">
       <div className="mx-auto max-w-3xl px-4">
         <p className="eyebrow flex items-center gap-2">
-          <TrendingUp aria-hidden="true" className="size-4 text-gold" />
-          O cenário real
+          <TrendingUp aria-hidden="true" className="size-4 text-gold" />O cenário real
         </p>
         <h2 id="grafico-title" className="rule-gold mt-4 text-2xl font-bold md:text-3xl">
           Quase metade do país ainda não tem certeza do voto — e é aí que o jogo muda
         </h2>
         <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
           Pesquisas eleitorais mostram que milhões de brasileiros chegam à reta final sem decisão
-          tomada. Mas quem decide com base em dados — não em meme — não só vota melhor: influencia
-          a família, o trabalho e o grupo de amigos.
+          tomada. Mas quem decide com base em dados — não em meme — não só vota melhor: influencia a
+          família, o trabalho e o grupo de amigos.
         </p>
 
-        <div className="mt-10 space-y-6">
+        <div className="mt-10 border-y border-foreground">
           {barras.map((b) => (
-            <div key={b.rotulo}>
-              <div className="flex items-baseline justify-between gap-4">
+            <div
+              key={b.rotulo}
+              className="grid gap-4 border-b border-foreground py-6 last:border-b-0 md:grid-cols-[1fr_2fr] md:items-center"
+            >
+              <div className="flex items-baseline justify-between gap-4 md:block">
                 <p
                   className={`text-sm font-bold md:text-base ${b.destaque ? "text-foreground" : "text-muted-foreground"}`}
                 >
@@ -417,27 +417,29 @@ function GraficoIndecisos() {
                   {b.valor}%
                 </p>
               </div>
-              <div
-                className="mt-2 h-4 w-full overflow-hidden rounded-full bg-border"
-                role="img"
-                aria-label={`${b.rotulo}: ${b.valor} por cento dos eleitores`}
-              >
+              <div className="border-l border-foreground pl-4 md:pl-6">
                 <div
-                  className={`h-full rounded-full ${b.destaque ? "bg-gold" : "bg-primary/40"}`}
-                  style={{ width: `${b.valor}%` }}
-                />
+                  className="flex h-3 w-full items-center border-y border-foreground"
+                  role="img"
+                  aria-label={`${b.rotulo}: ${b.valor} por cento dos eleitores`}
+                >
+                  <div
+                    className={`${b.destaque ? "bg-gold" : "bg-foreground"} h-[3px]`}
+                    style={{ width: `${b.valor}%` }}
+                  />
+                </div>
+                <p
+                  className={`mt-3 text-sm leading-relaxed ${b.destaque ? "font-semibold text-foreground" : "text-muted-foreground"}`}
+                >
+                  {b.descricao}
+                </p>
               </div>
-              <p
-                className={`mt-2 text-sm leading-relaxed ${b.destaque ? "font-semibold text-foreground" : "text-muted-foreground"}`}
-              >
-                {b.descricao}
-              </p>
             </div>
           ))}
         </div>
 
-        <div className="mt-8 flex items-start gap-4 rounded-xl bg-accent p-6">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-card shadow-card">
+        <div className="mt-8 flex items-start gap-4 border border-foreground p-6">
+          <span className="flex size-10 shrink-0 items-center justify-center border border-foreground bg-card">
             <Scale aria-hidden="true" className="size-5 text-gold" />
           </span>
           <p className="text-base leading-relaxed md:text-lg">
@@ -472,7 +474,7 @@ function ProvaSocial() {
               papel: "Engenheiro",
               iniciais: "CM",
               foto: avatarCarlos,
-              rede: { icon: MessageCircle, nome: "WhatsApp", cor: "text-[#25D366]" },
+              rede: { icon: MessageCircle, nome: "WhatsApp" },
             },
             {
               texto:
@@ -481,7 +483,7 @@ function ProvaSocial() {
               papel: "Advogada",
               iniciais: "MS",
               foto: avatarMariana,
-              rede: { icon: Instagram, nome: "Instagram", cor: "text-[#E1306C]" },
+              rede: { icon: Instagram, nome: "Instagram" },
             },
             {
               texto:
@@ -490,7 +492,7 @@ function ProvaSocial() {
               papel: "Professor de História",
               iniciais: "RT",
               foto: avatarRoberto,
-              rede: { icon: Mail, nome: "Gmail", cor: "text-[#EA4335]" },
+              rede: { icon: Mail, nome: "Gmail" },
             },
             {
               texto:
@@ -499,7 +501,7 @@ function ProvaSocial() {
               papel: "Contadora",
               iniciais: "FL",
               foto: avatarFernanda,
-              rede: { icon: MessageCircle, nome: "WhatsApp", cor: "text-[#25D366]" },
+              rede: { icon: MessageCircle, nome: "WhatsApp" },
             },
             {
               texto:
@@ -508,7 +510,7 @@ function ProvaSocial() {
               papel: "Empresário",
               iniciais: "JP",
               foto: avatarJoao,
-              rede: { icon: Instagram, nome: "Instagram", cor: "text-[#E1306C]" },
+              rede: { icon: Instagram, nome: "Instagram" },
             },
             {
               texto:
@@ -517,21 +519,25 @@ function ProvaSocial() {
               papel: "Estudante de Direito",
               iniciais: "AR",
               foto: avatarAline,
-              rede: { icon: Mail, nome: "Gmail", cor: "text-[#EA4335]" },
+              rede: { icon: Mail, nome: "Gmail" },
             },
           ].map((t) => (
             <figure
               key={t.nome}
-              className="flex flex-col rounded-xl border border-border bg-card p-6 shadow-card transition-shadow hover:shadow-card-lg"
+              className="relative flex flex-col border-t border-foreground bg-transparent py-8 sm:odd:pr-7 sm:even:border-l sm:even:pl-7"
             >
-              <div className="flex items-center gap-3">
+              <Quote aria-hidden="true" className="mb-5 size-8 text-gold" />
+              <blockquote className="flex-1 font-display text-lg leading-relaxed md:text-xl">
+                “{t.texto}”
+              </blockquote>
+              <figcaption className="mt-7 flex items-center gap-3 border-t border-border pt-4">
                 <img
                   src={t.foto}
                   alt={`Foto de ${t.nome}, ${t.papel}`}
                   width={512}
                   height={512}
                   loading="lazy"
-                  className="size-11 shrink-0 rounded-full object-cover"
+                  className="size-11 shrink-0 rounded-[2px] object-cover grayscale"
                 />
                 <span className="flex-1">
                   <span className="block text-sm font-bold">{t.nome}</span>
@@ -539,21 +545,9 @@ function ProvaSocial() {
                 </span>
                 <t.rede.icon
                   aria-label={`Depoimento enviado via ${t.rede.nome}`}
-                  className={`size-5 shrink-0 ${t.rede.cor}`}
+                  className="size-5 shrink-0 text-gold"
                 />
-              </div>
-              <div
-                className="mt-4 flex gap-1 text-gold"
-                role="img"
-                aria-label="Avaliação: 5 de 5 estrelas"
-              >
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} aria-hidden="true" className="size-4 fill-current" />
-                ))}
-              </div>
-              <blockquote className="mt-3 flex-1 text-base leading-relaxed">
-                "{t.texto}"
-              </blockquote>
+              </figcaption>
             </figure>
           ))}
         </div>
@@ -570,14 +564,14 @@ function TabelaComparativa() {
         <h2 id="tabela-title" className="rule-gold text-2xl font-bold md:text-3xl">
           Como você prefere se informar a partir de hoje?
         </h2>
-        <div className="mt-10 overflow-x-auto rounded-xl border border-border bg-card shadow-card">
+        <div className="mt-10 overflow-x-auto border-y border-foreground">
           <table className="w-full min-w-[34rem] border-collapse text-left text-sm md:text-base">
             <caption className="sr-only">
               Comparação entre se informar pelas redes sociais, pelo Google ou pelo guia
               comparativo, segundo origem, isenção e tempo.
             </caption>
             <thead>
-              <tr className="border-b border-border bg-secondary">
+              <tr className="border-b border-foreground">
                 <th scope="col" className="px-5 py-4 font-bold">
                   Critério
                 </th>
@@ -587,20 +581,20 @@ function TabelaComparativa() {
                 <th scope="col" className="px-5 py-4 font-bold">
                   Google
                 </th>
-                <th scope="col" className="px-5 py-4 font-bold text-gold">
+                <th scope="col" className="bg-secondary px-5 py-4 font-bold text-foreground">
                   O Nosso Guia
                 </th>
               </tr>
             </thead>
             <tbody>
               {comparativo.map(([criterio, redes, google, guia]) => (
-                <tr key={criterio} className="border-b border-border last:border-0">
+                <tr key={criterio} className="border-b border-foreground last:border-0">
                   <th scope="row" className="px-5 py-4 font-semibold">
                     {criterio}
                   </th>
                   <td className="px-5 py-4 text-muted-foreground">{redes}</td>
                   <td className="px-5 py-4 text-muted-foreground">{google}</td>
-                  <td className="bg-accent/50 px-5 py-4 font-semibold text-foreground">{guia}</td>
+                  <td className="bg-secondary px-5 py-4 font-semibold text-foreground">{guia}</td>
                 </tr>
               ))}
             </tbody>
@@ -616,7 +610,7 @@ function Oferta() {
   return (
     <section id="oferta" className="section-pad bg-secondary" aria-labelledby="oferta-title">
       <div className="mx-auto max-w-3xl px-4">
-        <div className="rounded-2xl bg-card p-8 shadow-card-lg md:p-10">
+        <div className="border border-foreground bg-card p-8 shadow-card-lg md:p-10">
           <div className="grid items-center gap-10 md:grid-cols-[1fr_auto]">
             <div>
               <p className="eyebrow">Acesso completo</p>
@@ -641,14 +635,14 @@ function Oferta() {
                 height={1920}
                 loading="lazy"
                 alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
-                className="w-56 max-w-full rounded-lg shadow-cover md:w-64"
+                className="w-56 max-w-full rounded-[2px] shadow-cover md:w-64"
               />
             </div>
           </div>
         </div>
 
-        <div className="mt-8 flex items-start gap-4 rounded-xl border border-gold/30 bg-accent p-6 md:p-8">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-card shadow-card">
+        <div className="mt-8 flex items-start gap-4 border border-foreground bg-accent p-6 md:p-8">
+          <span className="flex size-10 shrink-0 items-center justify-center border border-foreground bg-card shadow-card">
             <FileCheck2 aria-hidden="true" className="size-5 text-gold" />
           </span>
           <div>
@@ -669,7 +663,7 @@ function Oferta() {
             {faq.map((f) => (
               <details
                 key={f.q}
-                className="group rounded-xl border border-border bg-card px-6 py-5 shadow-card"
+                className="group rounded-[2px] border border-border bg-card px-6 py-5 shadow-card"
               >
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-bold marker:hidden">
                   {f.q}
