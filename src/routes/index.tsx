@@ -214,23 +214,21 @@ function Hero() {
           camadas que separa Fato, Interpretação e Acusação.
         </p>
 
-        <div className="mt-10 w-full max-w-xs">
-          <div className="rounded-2xl bg-card p-6 shadow-card-lg">
-            <img
-              src={cover.url}
-              width={1920}
-              height={1920}
-              alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
-              className="mx-auto w-56 max-w-full rounded-lg md:w-64"
-            />
-            <p className="mt-4 flex items-start gap-2 text-left text-xs leading-relaxed text-muted-foreground">
-              <Lock aria-hidden="true" className="mt-0.5 size-3.5 shrink-0 text-gold" />
-              <span>
-                Dados com links diretos para as bases oficiais do IBGE, STF, TSE, INPE e Tesouro
-                Nacional.
-              </span>
-            </p>
-          </div>
+        <div className="mt-10 w-full max-w-sm px-2 md:max-w-md">
+          <img
+            src={cover.url}
+            width={1920}
+            height={1920}
+            alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
+            className="w-full rounded-lg"
+          />
+          <p className="mt-4 flex items-start gap-2 px-1 text-left text-xs leading-relaxed text-muted-foreground">
+            <Lock aria-hidden="true" className="mt-0.5 size-3.5 shrink-0 text-gold" />
+            <span>
+              Dados com links diretos para as bases oficiais do IBGE, STF, TSE, INPE e Tesouro
+              Nacional.
+            </span>
+          </p>
         </div>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
@@ -616,34 +614,30 @@ function Oferta() {
   return (
     <section id="oferta" className="section-pad bg-secondary" aria-labelledby="oferta-title">
       <div className="mx-auto max-w-3xl px-4">
-        <div className="rounded-2xl bg-card p-8 shadow-card-lg md:p-10">
-          <div className="grid items-center gap-10 md:grid-cols-[1fr_auto]">
-            <div>
-              <p className="eyebrow">Acesso completo</p>
-              <h2 id="oferta-title" className="mt-4 text-2xl font-bold md:text-3xl">
-                Adquira o Acesso Completo
-              </h2>
-              <p className="mt-6 text-base leading-relaxed md:text-lg">
-                Matriz de Integridade, Glossário Jurídico, Ficha Pessoal de Decisão.{" "}
-                <strong className="font-bold">Acesso Vitalício</strong> + Atualizações com Fontes
-                Oficiais Linkadas.
-              </p>
-              <div className="mt-8">
-                <CtaLink href={OFERTA.checkout} tone="gold" size="lg" location="offer_primary">
-                  QUERO ACESSAR O GUIA COMPARATIVO AGORA
-                </CtaLink>
-              </div>
-            </div>
-            <div className="flex justify-center">
-              <img
-                src={cover.url}
-                width={1920}
-                height={1920}
-                loading="lazy"
-                alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
-                className="w-56 max-w-full rounded-lg shadow-cover md:w-64"
-              />
-            </div>
+        <div className="flex justify-center px-2">
+          <img
+            src={cover.url}
+            width={1920}
+            height={1920}
+            alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
+            className="w-full max-w-sm rounded-lg md:max-w-md"
+          />
+        </div>
+
+        <div className="mt-8 rounded-2xl bg-card p-8 shadow-card-lg md:p-10">
+          <p className="eyebrow">Acesso completo</p>
+          <h2 id="oferta-title" className="mt-4 text-2xl font-bold md:text-3xl">
+            Adquira o Acesso Completo
+          </h2>
+          <p className="mt-6 text-base leading-relaxed md:text-lg">
+            Matriz de Integridade, Glossário Jurídico, Ficha Pessoal de Decisão.{" "}
+            <strong className="font-bold">Acesso Vitalício</strong> + Atualizações com Fontes
+            Oficiais Linkadas.
+          </p>
+          <div className="mt-8">
+            <CtaLink href={OFERTA.checkout} tone="gold" size="lg" location="offer_primary">
+              QUERO ACESSAR O GUIA COMPARATIVO AGORA
+            </CtaLink>
           </div>
         </div>
 
