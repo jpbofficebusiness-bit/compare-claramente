@@ -632,14 +632,14 @@ function Oferta() {
                 </CtaLink>
               </div>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center px-2">
               <img
                 src={cover.url}
                 width={1920}
                 height={1920}
                 loading="lazy"
                 alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
-                className="w-56 max-w-full rounded-lg shadow-cover md:w-64"
+                className="w-full max-w-xs rounded-lg md:max-w-sm"
               />
             </div>
           </div>
