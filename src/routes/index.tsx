@@ -208,13 +208,8 @@ function Hero() {
           procedência e grupos aleatórios.{" "}
           <span className="text-gold">Compare o que cada um realmente fez.</span>
         </h1>
-        <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-          O guia comparativo definitivo que coloca lado a lado o que Lula e Bolsonaro realmente
-          fizeram, fundamentado estritamente em dados oficiais — através de uma triagem em 4
-          camadas que separa Fato, Interpretação e Acusação.
-        </p>
 
-        <div className="mt-10 w-full max-w-sm px-2 md:max-w-md">
+        <div className="mt-8 w-full max-w-sm px-2 md:max-w-md">
           <img
             src={cover.url}
             width={1920}
@@ -230,6 +225,12 @@ function Hero() {
             </span>
           </p>
         </div>
+
+        <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+          O guia comparativo definitivo que coloca lado a lado o que Lula e Bolsonaro realmente
+          fizeram, fundamentado estritamente em dados oficiais — através de uma triagem em 4
+          camadas que separa Fato, Interpretação e Acusação.
+        </p>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <CtaLink href="#oferta" tone="gold" size="lg" location="hero_primary">
