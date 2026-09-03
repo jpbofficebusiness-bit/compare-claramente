@@ -376,12 +376,14 @@ function GraficoIndecisos() {
       valor: 54,
       descricao: "Votam por hábito, família ou afinidade — muitas vezes sem checar dados.",
       destaque: false,
+      largura: "w-[54%]",
     },
     {
       rotulo: "Indecisos que desistiram de entender",
       valor: 28,
       descricao: "Cansaram do ruído e votam no impulso, ou anulam.",
       destaque: false,
+      largura: "w-[28%]",
     },
     {
       rotulo: "Indecisos que buscam certeza factual",
@@ -389,17 +391,14 @@ function GraficoIndecisos() {
       descricao:
         "Querem dados oficiais antes de decidir. É esse grupo — o seu — que realmente muda o jogo, porque decide com consciência e influencia todos ao redor.",
       destaque: true,
+      largura: "w-[18%]",
     },
   ];
 
   return (
     <section className="section-pad" aria-labelledby="grafico-title">
       <div className="mx-auto max-w-3xl px-4">
-        <p className="eyebrow flex items-center gap-2">
-          <TrendingUp aria-hidden="true" className="size-4 text-gold" />
-          O cenário real
-        </p>
-        <h2 id="grafico-title" className="rule-gold mt-4 text-2xl font-bold md:text-3xl">
+        <h2 id="grafico-title" className="rule-gold text-2xl font-bold md:text-3xl">
           Quase metade do país ainda não tem certeza do voto — e é aí que o jogo muda
         </h2>
         <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
@@ -428,10 +427,7 @@ function GraficoIndecisos() {
                 role="img"
                 aria-label={`${b.rotulo}: ${b.valor} por cento dos eleitores`}
               >
-                <div
-                  className={`h-full rounded-full ${b.destaque ? "bg-gold" : "bg-primary/40"}`}
-                  style={{ width: `${b.valor}%` }}
-                />
+                <div className={`h-full rounded-full ${b.largura} ${b.destaque ? "bg-gold" : "bg-primary/40"}`} />
               </div>
               <p
                 className={`mt-2 text-sm leading-relaxed ${b.destaque ? "font-semibold text-foreground" : "text-muted-foreground"}`}
@@ -464,102 +460,90 @@ function GraficoIndecisos() {
 /* DOBRA 5 — Prova social contextualizada */
 function ProvaSocial() {
   return (
-    <section className="section-pad bg-secondary" aria-labelledby="prova-title">
-      <div className="mx-auto max-w-3xl px-4">
+    <section className="section-pad bg-card" aria-labelledby="prova-title">
+      <div className="mx-auto max-w-5xl px-4">
         <h2 id="prova-title" className="rule-gold text-2xl font-bold md:text-3xl">
           Quem decide com base em método não depende de torcida
         </h2>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2">
+        <div className="mt-12 grid border-t border-primary/25 md:grid-cols-2">
           {[
             {
               texto:
                 "A intervenção foi imediata: a Matriz de Comparação me permitiu olhar os números da economia de cada governo lado a lado. O resultado é que hoje consigo participar de qualquer conversa de forma calma e equilibrada.",
               nome: "Carlos M.",
               papel: "Engenheiro",
-              iniciais: "CM",
               foto: avatarCarlos,
-              rede: { icon: MessageCircle, nome: "WhatsApp", cor: "text-[#25D366]" },
+              rede: { icon: MessageCircle, nome: "WhatsApp" },
             },
             {
               texto:
                 "Eu tinha pavor de compartilhar dados no trabalho e ser corrigida. Usei o método de triagem. O resultado é que agora debato com segurança intelectual inabalável; eu apenas mostro o link oficial do STF no PDF.",
               nome: "Mariana S.",
               papel: "Advogada",
-              iniciais: "MS",
               foto: avatarMariana,
-              rede: { icon: Instagram, nome: "Instagram", cor: "text-[#E1306C]" },
+              rede: { icon: Instagram, nome: "Instagram" },
             },
             {
               texto:
                 "Finalmente entendi a diferença entre investigação, denúncia e condenação. Parei de repetir o que ouço por aí e comecei a explicar para a minha família com calma.",
               nome: "Roberto T.",
               papel: "Professor de História",
-              iniciais: "RT",
               foto: avatarRoberto,
-              rede: { icon: Mail, nome: "Gmail", cor: "text-[#EA4335]" },
+              rede: { icon: Mail, nome: "Gmail" },
             },
             {
               texto:
                 "O Glossário Jurídico Descomplicado vale o investimento sozinho. Consegui ler os jornais com outro nível de compreensão e parei de me sentir perdido nos debates.",
               nome: "Fernanda L.",
               papel: "Contadora",
-              iniciais: "FL",
               foto: avatarFernanda,
-              rede: { icon: MessageCircle, nome: "WhatsApp", cor: "text-[#25D366]" },
+              rede: { icon: MessageCircle, nome: "WhatsApp" },
             },
             {
               texto:
                 "Minha mesa de bar virou um espaço de conversa, não de briga. Tenho dados oficiais na ponta da língua e isso muda completamente o tom da discussão.",
               nome: "João P.",
               papel: "Empresário",
-              iniciais: "JP",
               foto: avatarJoao,
-              rede: { icon: Instagram, nome: "Instagram", cor: "text-[#E1306C]" },
+              rede: { icon: Instagram, nome: "Instagram" },
             },
             {
               texto:
                 "Sempre achei que política fosse só opinião. O guia me mostrou que dá para comparar fatos de forma organizada. Hoje me sinto muito mais segura para votar.",
               nome: "Aline R.",
               papel: "Estudante de Direito",
-              iniciais: "AR",
               foto: avatarAline,
-              rede: { icon: Mail, nome: "Gmail", cor: "text-[#EA4335]" },
+              rede: { icon: Mail, nome: "Gmail" },
             },
           ].map((t) => (
             <figure
               key={t.nome}
-              className="flex flex-col rounded-xl border border-border bg-card p-6 shadow-card transition-shadow hover:shadow-card-lg"
+              className="flex flex-col border-b border-primary/20 px-1 py-8 md:px-8 md:even:border-l"
             >
-              <div className="flex items-center gap-3">
+              <Quote aria-hidden="true" className="mb-5 size-7 text-gold" />
+              <blockquote className="flex-1 text-lg leading-relaxed text-foreground">
+                “{t.texto}”
+              </blockquote>
+              <figcaption className="mt-7 flex items-center gap-3">
                 <img
                   src={t.foto}
                   alt={`Foto de ${t.nome}, ${t.papel}`}
                   width={512}
                   height={512}
                   loading="lazy"
-                  className="size-11 shrink-0 rounded-full object-cover"
+                  className="size-12 shrink-0 rounded-full object-cover grayscale"
                 />
                 <span className="flex-1">
                   <span className="block text-sm font-bold">{t.nome}</span>
                   <span className="block text-sm text-muted-foreground">{t.papel}</span>
                 </span>
-                <t.rede.icon
-                  aria-label={`Depoimento enviado via ${t.rede.nome}`}
-                  className={`size-5 shrink-0 ${t.rede.cor}`}
-                />
-              </div>
-              <div
-                className="mt-4 flex gap-1 text-gold"
-                role="img"
-                aria-label="Avaliação: 5 de 5 estrelas"
-              >
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} aria-hidden="true" className="size-4 fill-current" />
-                ))}
-              </div>
-              <blockquote className="mt-3 flex-1 text-base leading-relaxed">
-                "{t.texto}"
-              </blockquote>
+                <span className="flex items-center gap-1 text-gold" role="img" aria-label="Avaliação: 5 de 5 estrelas">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} aria-hidden="true" className="size-3 fill-current" />
+                  ))}
+                </span>
+                <t.rede.icon aria-label={`Depoimento enviado via ${t.rede.nome}`} className="ml-auto size-5 shrink-0 text-muted-foreground" />
+              </figcaption>
             </figure>
           ))}
         </div>
