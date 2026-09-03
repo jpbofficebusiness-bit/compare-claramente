@@ -5,9 +5,10 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system editorial — branco de papel, azul-marinho, grafite e um
- * único acento dourado discreto. Hierarquia inspirada em imprensa de dados.
- * Todas as cores em oklch. Nunca usar cores literais em componentes.
+ * Design system editorial — branco de papel, azul institucional, verde
+ * floresta e amarelo mostarda. Paleta sóbria que evoca jornalismo de dados
+ * e transparência sem cair em hype. Todas as cores em oklch.
+ * Nunca usar cores literais em componentes.
  */
 
 @theme inline {
