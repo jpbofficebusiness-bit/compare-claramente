@@ -217,14 +217,14 @@ function Hero() {
           camadas que separa Fato, Interpretação e Acusação.
         </p>
 
-        <div className="mt-10 w-full max-w-sm">
+        <div className="mt-10 w-full max-w-md">
           <div className="rounded-2xl bg-card p-6 shadow-card-lg">
             <img
               src={cover.url}
               width={1920}
               height={1920}
               alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
-              className="mx-auto w-72 max-w-full rounded-lg md:w-80"
+              className="mx-auto w-80 max-w-full rounded-lg md:w-96"
             />
             <p className="mt-4 flex items-start gap-2 text-left text-xs leading-relaxed text-muted-foreground">
               <Lock aria-hidden="true" className="mt-0.5 size-3.5 shrink-0 text-gold" />
@@ -635,7 +635,7 @@ function Oferta() {
                 height={1920}
                 loading="lazy"
                 alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
-                className="w-72 max-w-full rounded-lg shadow-cover md:w-80"
+                className="w-80 max-w-full rounded-lg shadow-cover md:w-96"
               />
             </div>
           </div>
