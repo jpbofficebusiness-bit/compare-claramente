@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
-  ArrowRight,
   BookOpenCheck,
+  ChevronDown,
   EyeOff,
   FileCheck2,
   Instagram,
@@ -15,7 +15,6 @@ import {
   ShieldCheck,
   Star,
   Timer,
-  TrendingUp,
 } from "lucide-react";
 import cover from "@/assets/ebook-cover-new.jpg.asset.json";
 import avatarCarlos from "@/assets/avatars/carlos.jpg";
@@ -119,9 +118,9 @@ const faq = [
 ];
 
 const stats = [
-  { valor: "5", rotulo: "fontes oficiais linkadas" },
-  { valor: "4", rotulo: "camadas de triagem" },
-  { valor: "0", rotulo: "opiniões prontas" },
+  { valor: "5", rotulo: "fontes oficiais", detalhe: "linkadas e rastreáveis" },
+  { valor: "4", rotulo: "camadas", detalhe: "no mesmo método de triagem" },
+  { valor: "0", rotulo: "opiniões prontas", detalhe: "a conclusão continua sendo sua" },
 ];
 
 const confianca = [
@@ -146,9 +145,9 @@ function LandingPage() {
         <Identificacao />
         <Implicacoes />
         <Mecanismo />
+        <TabelaComparativa />
         <GraficoIndecisos />
         <ProvaSocial />
-        <TabelaComparativa />
         <Oferta />
       </main>
       <Footer />
@@ -159,32 +158,36 @@ function LandingPage() {
 
 /* Barra de escassez — topo */
 function BarraEscassez() {
-  const [restam, setRestam] = useState(2 * 60 * 60);
+  const expiracao = Date.UTC(2026, 8, 3, 2, 30, 0);
+  const [restam, setRestam] = useState<number | null>(null);
 
   useEffect(() => {
+    const atualizar = () => setRestam(Math.max(0, Math.floor((expiracao - Date.now()) / 1000)));
+    atualizar();
     const id = setInterval(() => {
-      setRestam((s) => (s > 0 ? s - 1 : 0));
+      atualizar();
     }, 1000);
     return () => clearInterval(id);
-  }, []);
+  }, [expiracao]);
 
-  const h = Math.floor(restam / 3600);
-  const m = Math.floor((restam % 3600) / 60);
-  const s = restam % 60;
-  const tempo = `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+  const h = Math.floor((restam ?? 0) / 3600);
+  const m = Math.floor(((restam ?? 0) % 3600) / 60);
+  const s = (restam ?? 0) % 60;
+  const tempo = restam === null ? "—:—:—" : `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+  const encerrada = restam === 0;
 
   return (
     <div className="bg-primary text-primary-foreground">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-2 px-4 py-3 text-center sm:flex-row sm:gap-4 sm:py-2.5">
         <p className="flex items-center gap-2 text-sm font-semibold sm:text-base">
           <Timer aria-hidden="true" className="size-4 text-gold" />
-          Oferta especial acaba em 2 horas
+          {encerrada ? "Oferta encerrada" : "Oferta válida até 23h30 de 2 de setembro — horário de Brasília"}
         </p>
         <span
           className="rounded-md bg-gold px-3 py-1 font-mono text-sm font-bold text-gold-foreground tabular-nums"
           aria-live="polite"
         >
-          {tempo}
+          {encerrada ? "ENCERRADA" : tempo}
         </span>
       </div>
     </div>
@@ -195,7 +198,7 @@ function BarraEscassez() {
 function Hero() {
   return (
     <section className="bg-secondary" aria-labelledby="hero-title">
-      <div className="mx-auto flex max-w-3xl flex-col items-center px-4 py-16 text-center md:py-24">
+      <div className="hero-reveal mx-auto flex max-w-3xl flex-col items-center px-4 py-16 text-center md:py-24">
         <span className="pill-badge">
           <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
           E-book · Guia comparativo
@@ -242,12 +245,15 @@ function Hero() {
             Ver como funciona
           </CtaLink>
         </div>
-        <dl className="mt-10 flex flex-wrap justify-center gap-x-10 gap-y-4">
+        <dl className="mt-12 grid w-full overflow-hidden border-y border-primary/20 text-left sm:grid-cols-3">
           {stats.map((s) => (
-            <div key={s.rotulo}>
+            <div key={s.rotulo} className="border-primary/15 px-5 py-5 sm:border-l sm:first:border-l-0">
               <dt className="sr-only">{s.rotulo}</dt>
-              <dd className="font-display text-2xl font-extrabold md:text-3xl">{s.valor}</dd>
-              <dd className="mt-0.5 text-sm text-muted-foreground">{s.rotulo}</dd>
+              <dd className="flex items-baseline gap-2">
+                <span className="font-display text-3xl font-bold text-primary">{s.valor}</span>
+                <span className="font-semibold text-foreground">{s.rotulo}</span>
+              </dd>
+              <dd className="mt-1 text-sm text-muted-foreground">{s.detalhe}</dd>
             </div>
           ))}
         </dl>
