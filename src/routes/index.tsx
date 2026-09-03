@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
+  ArrowRight,
   BookOpenCheck,
-  ChevronDown,
   EyeOff,
   FileCheck2,
   Instagram,
@@ -15,6 +15,7 @@ import {
   ShieldCheck,
   Star,
   Timer,
+  TrendingUp,
 } from "lucide-react";
 import cover from "@/assets/ebook-cover-new.jpg.asset.json";
 import avatarCarlos from "@/assets/avatars/carlos.jpg";
@@ -118,9 +119,9 @@ const faq = [
 ];
 
 const stats = [
-  { valor: "5", rotulo: "fontes oficiais", detalhe: "linkadas e rastreáveis" },
-  { valor: "4", rotulo: "camadas", detalhe: "no mesmo método de triagem" },
-  { valor: "0", rotulo: "opiniões prontas", detalhe: "a conclusão continua sendo sua" },
+  { valor: "5", rotulo: "fontes oficiais linkadas" },
+  { valor: "4", rotulo: "camadas de triagem" },
+  { valor: "0", rotulo: "opiniões prontas" },
 ];
 
 const confianca = [
@@ -145,9 +146,9 @@ function LandingPage() {
         <Identificacao />
         <Implicacoes />
         <Mecanismo />
-        <TabelaComparativa />
         <GraficoIndecisos />
         <ProvaSocial />
+        <TabelaComparativa />
         <Oferta />
       </main>
       <Footer />
@@ -158,36 +159,32 @@ function LandingPage() {
 
 /* Barra de escassez — topo */
 function BarraEscassez() {
-  const expiracao = Date.UTC(2026, 8, 3, 2, 30, 0);
-  const [restam, setRestam] = useState<number | null>(null);
+  const [restam, setRestam] = useState(2 * 60 * 60);
 
   useEffect(() => {
-    const atualizar = () => setRestam(Math.max(0, Math.floor((expiracao - Date.now()) / 1000)));
-    atualizar();
     const id = setInterval(() => {
-      atualizar();
+      setRestam((s) => (s > 0 ? s - 1 : 0));
     }, 1000);
     return () => clearInterval(id);
-  }, [expiracao]);
+  }, []);
 
-  const h = Math.floor((restam ?? 0) / 3600);
-  const m = Math.floor(((restam ?? 0) % 3600) / 60);
-  const s = (restam ?? 0) % 60;
-  const tempo = restam === null ? "—:—:—" : `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
-  const encerrada = restam === 0;
+  const h = Math.floor(restam / 3600);
+  const m = Math.floor((restam % 3600) / 60);
+  const s = restam % 60;
+  const tempo = `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
 
   return (
     <div className="bg-primary text-primary-foreground">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-2 px-4 py-3 text-center sm:flex-row sm:gap-4 sm:py-2.5">
         <p className="flex items-center gap-2 text-sm font-semibold sm:text-base">
           <Timer aria-hidden="true" className="size-4 text-gold" />
-          {encerrada ? "Oferta encerrada" : "Oferta válida até 23h30 de 2 de setembro — horário de Brasília"}
+          Oferta especial acaba em 2 horas
         </p>
         <span
           className="rounded-md bg-gold px-3 py-1 font-mono text-sm font-bold text-gold-foreground tabular-nums"
           aria-live="polite"
         >
-          {encerrada ? "ENCERRADA" : tempo}
+          {tempo}
         </span>
       </div>
     </div>
@@ -198,7 +195,7 @@ function BarraEscassez() {
 function Hero() {
   return (
     <section className="bg-secondary" aria-labelledby="hero-title">
-      <div className="hero-reveal mx-auto flex max-w-3xl flex-col items-center px-4 py-16 text-center md:py-24">
+      <div className="mx-auto flex max-w-3xl flex-col items-center px-4 py-16 text-center md:py-24">
         <span className="pill-badge">
           <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
           E-book · Guia comparativo
@@ -217,14 +214,14 @@ function Hero() {
           camadas que separa Fato, Interpretação e Acusação.
         </p>
 
-        <div className="mt-10 w-full max-w-md">
+        <div className="mt-10 w-full max-w-xs">
           <div className="rounded-2xl bg-card p-6 shadow-card-lg">
             <img
               src={cover.url}
               width={1920}
               height={1920}
               alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
-              className="mx-auto w-80 max-w-full rounded-lg md:w-96"
+              className="mx-auto w-56 max-w-full rounded-lg md:w-64"
             />
             <p className="mt-4 flex items-start gap-2 text-left text-xs leading-relaxed text-muted-foreground">
               <Lock aria-hidden="true" className="mt-0.5 size-3.5 shrink-0 text-gold" />
@@ -245,15 +242,12 @@ function Hero() {
             Ver como funciona
           </CtaLink>
         </div>
-        <dl className="mt-12 grid w-full overflow-hidden border-y border-primary/20 text-left sm:grid-cols-3">
+        <dl className="mt-10 flex flex-wrap justify-center gap-x-10 gap-y-4">
           {stats.map((s) => (
-            <div key={s.rotulo} className="border-primary/15 px-5 py-5 sm:border-l sm:first:border-l-0">
+            <div key={s.rotulo}>
               <dt className="sr-only">{s.rotulo}</dt>
-              <dd className="flex items-baseline gap-2">
-                <span className="font-display text-3xl font-bold text-primary">{s.valor}</span>
-                <span className="font-semibold text-foreground">{s.rotulo}</span>
-              </dd>
-              <dd className="mt-1 text-sm text-muted-foreground">{s.detalhe}</dd>
+              <dd className="font-display text-2xl font-extrabold md:text-3xl">{s.valor}</dd>
+              <dd className="mt-0.5 text-sm text-muted-foreground">{s.rotulo}</dd>
             </div>
           ))}
         </dl>
@@ -376,14 +370,12 @@ function GraficoIndecisos() {
       valor: 54,
       descricao: "Votam por hábito, família ou afinidade — muitas vezes sem checar dados.",
       destaque: false,
-      largura: "w-[54%]",
     },
     {
       rotulo: "Indecisos que desistiram de entender",
       valor: 28,
       descricao: "Cansaram do ruído e votam no impulso, ou anulam.",
       destaque: false,
-      largura: "w-[28%]",
     },
     {
       rotulo: "Indecisos que buscam certeza factual",
@@ -391,14 +383,17 @@ function GraficoIndecisos() {
       descricao:
         "Querem dados oficiais antes de decidir. É esse grupo — o seu — que realmente muda o jogo, porque decide com consciência e influencia todos ao redor.",
       destaque: true,
-      largura: "w-[18%]",
     },
   ];
 
   return (
     <section className="section-pad" aria-labelledby="grafico-title">
       <div className="mx-auto max-w-3xl px-4">
-        <h2 id="grafico-title" className="rule-gold text-2xl font-bold md:text-3xl">
+        <p className="eyebrow flex items-center gap-2">
+          <TrendingUp aria-hidden="true" className="size-4 text-gold" />
+          O cenário real
+        </p>
+        <h2 id="grafico-title" className="rule-gold mt-4 text-2xl font-bold md:text-3xl">
           Quase metade do país ainda não tem certeza do voto — e é aí que o jogo muda
         </h2>
         <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
@@ -427,7 +422,10 @@ function GraficoIndecisos() {
                 role="img"
                 aria-label={`${b.rotulo}: ${b.valor} por cento dos eleitores`}
               >
-                <div className={`h-full rounded-full ${b.largura} ${b.destaque ? "bg-gold" : "bg-primary/40"}`} />
+                <div
+                  className={`h-full rounded-full ${b.destaque ? "bg-gold" : "bg-primary/40"}`}
+                  style={{ width: `${b.valor}%` }}
+                />
               </div>
               <p
                 className={`mt-2 text-sm leading-relaxed ${b.destaque ? "font-semibold text-foreground" : "text-muted-foreground"}`}
@@ -460,90 +458,102 @@ function GraficoIndecisos() {
 /* DOBRA 5 — Prova social contextualizada */
 function ProvaSocial() {
   return (
-    <section className="section-pad bg-card" aria-labelledby="prova-title">
-      <div className="mx-auto max-w-5xl px-4">
+    <section className="section-pad bg-secondary" aria-labelledby="prova-title">
+      <div className="mx-auto max-w-3xl px-4">
         <h2 id="prova-title" className="rule-gold text-2xl font-bold md:text-3xl">
           Quem decide com base em método não depende de torcida
         </h2>
-        <div className="mt-12 grid border-t border-primary/25 md:grid-cols-2">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2">
           {[
             {
               texto:
                 "A intervenção foi imediata: a Matriz de Comparação me permitiu olhar os números da economia de cada governo lado a lado. O resultado é que hoje consigo participar de qualquer conversa de forma calma e equilibrada.",
               nome: "Carlos M.",
               papel: "Engenheiro",
+              iniciais: "CM",
               foto: avatarCarlos,
-              rede: { icon: MessageCircle, nome: "WhatsApp" },
+              rede: { icon: MessageCircle, nome: "WhatsApp", cor: "text-[#25D366]" },
             },
             {
               texto:
                 "Eu tinha pavor de compartilhar dados no trabalho e ser corrigida. Usei o método de triagem. O resultado é que agora debato com segurança intelectual inabalável; eu apenas mostro o link oficial do STF no PDF.",
               nome: "Mariana S.",
               papel: "Advogada",
+              iniciais: "MS",
               foto: avatarMariana,
-              rede: { icon: Instagram, nome: "Instagram" },
+              rede: { icon: Instagram, nome: "Instagram", cor: "text-[#E1306C]" },
             },
             {
               texto:
                 "Finalmente entendi a diferença entre investigação, denúncia e condenação. Parei de repetir o que ouço por aí e comecei a explicar para a minha família com calma.",
               nome: "Roberto T.",
               papel: "Professor de História",
+              iniciais: "RT",
               foto: avatarRoberto,
-              rede: { icon: Mail, nome: "Gmail" },
+              rede: { icon: Mail, nome: "Gmail", cor: "text-[#EA4335]" },
             },
             {
               texto:
                 "O Glossário Jurídico Descomplicado vale o investimento sozinho. Consegui ler os jornais com outro nível de compreensão e parei de me sentir perdido nos debates.",
               nome: "Fernanda L.",
               papel: "Contadora",
+              iniciais: "FL",
               foto: avatarFernanda,
-              rede: { icon: MessageCircle, nome: "WhatsApp" },
+              rede: { icon: MessageCircle, nome: "WhatsApp", cor: "text-[#25D366]" },
             },
             {
               texto:
                 "Minha mesa de bar virou um espaço de conversa, não de briga. Tenho dados oficiais na ponta da língua e isso muda completamente o tom da discussão.",
               nome: "João P.",
               papel: "Empresário",
+              iniciais: "JP",
               foto: avatarJoao,
-              rede: { icon: Instagram, nome: "Instagram" },
+              rede: { icon: Instagram, nome: "Instagram", cor: "text-[#E1306C]" },
             },
             {
               texto:
                 "Sempre achei que política fosse só opinião. O guia me mostrou que dá para comparar fatos de forma organizada. Hoje me sinto muito mais segura para votar.",
               nome: "Aline R.",
               papel: "Estudante de Direito",
+              iniciais: "AR",
               foto: avatarAline,
-              rede: { icon: Mail, nome: "Gmail" },
+              rede: { icon: Mail, nome: "Gmail", cor: "text-[#EA4335]" },
             },
           ].map((t) => (
             <figure
               key={t.nome}
-              className="flex flex-col border-b border-primary/20 px-1 py-8 md:px-8 md:even:border-l"
+              className="flex flex-col rounded-xl border border-border bg-card p-6 shadow-card transition-shadow hover:shadow-card-lg"
             >
-              <Quote aria-hidden="true" className="mb-5 size-7 text-gold" />
-              <blockquote className="flex-1 text-lg leading-relaxed text-foreground">
-                “{t.texto}”
-              </blockquote>
-              <figcaption className="mt-7 flex items-center gap-3">
+              <div className="flex items-center gap-3">
                 <img
                   src={t.foto}
                   alt={`Foto de ${t.nome}, ${t.papel}`}
                   width={512}
                   height={512}
                   loading="lazy"
-                  className="size-12 shrink-0 rounded-full object-cover grayscale"
+                  className="size-11 shrink-0 rounded-full object-cover"
                 />
                 <span className="flex-1">
                   <span className="block text-sm font-bold">{t.nome}</span>
                   <span className="block text-sm text-muted-foreground">{t.papel}</span>
                 </span>
-                <span className="flex items-center gap-1 text-gold" role="img" aria-label="Avaliação: 5 de 5 estrelas">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} aria-hidden="true" className="size-3 fill-current" />
-                  ))}
-                </span>
-                <t.rede.icon aria-label={`Depoimento enviado via ${t.rede.nome}`} className="ml-auto size-5 shrink-0 text-muted-foreground" />
-              </figcaption>
+                <t.rede.icon
+                  aria-label={`Depoimento enviado via ${t.rede.nome}`}
+                  className={`size-5 shrink-0 ${t.rede.cor}`}
+                />
+              </div>
+              <div
+                className="mt-4 flex gap-1 text-gold"
+                role="img"
+                aria-label="Avaliação: 5 de 5 estrelas"
+              >
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} aria-hidden="true" className="size-4 fill-current" />
+                ))}
+              </div>
+              <blockquote className="mt-3 flex-1 text-base leading-relaxed">
+                "{t.texto}"
+              </blockquote>
             </figure>
           ))}
         </div>
@@ -555,34 +565,29 @@ function ProvaSocial() {
 /* DOBRA 6 — Tabela comparativa */
 function TabelaComparativa() {
   return (
-    <section className="section-pad bg-primary text-primary-foreground" aria-labelledby="tabela-title">
-      <div className="mx-auto max-w-6xl px-4">
-        <div className="max-w-3xl">
-        <h2 id="tabela-title" className="text-3xl font-bold md:text-5xl">
+    <section className="section-pad" aria-labelledby="tabela-title">
+      <div className="mx-auto max-w-4xl px-4">
+        <h2 id="tabela-title" className="rule-gold text-2xl font-bold md:text-3xl">
           Como você prefere se informar a partir de hoje?
         </h2>
-        <p className="mt-5 text-lg leading-relaxed text-primary-foreground/75">
-          O argumento central em uma única leitura: compare origem, isenção e custo de tempo antes de escolher sua fonte.
-        </p>
-        </div>
-        <div className="mt-12 overflow-x-auto border border-primary-foreground/25 bg-card text-card-foreground shadow-card-lg">
-          <table className="w-full min-w-[44rem] border-collapse text-left text-base md:text-lg">
+        <div className="mt-10 overflow-x-auto rounded-xl border border-border bg-card shadow-card">
+          <table className="w-full min-w-[34rem] border-collapse text-left text-sm md:text-base">
             <caption className="sr-only">
               Comparação entre se informar pelas redes sociais, pelo Google ou pelo guia
               comparativo, segundo origem, isenção e tempo.
             </caption>
             <thead>
               <tr className="border-b border-border bg-secondary">
-                <th scope="col" className="px-6 py-6 font-bold">
+                <th scope="col" className="px-5 py-4 font-bold">
                   Critério
                 </th>
-                <th scope="col" className="px-6 py-6 font-bold">
+                <th scope="col" className="px-5 py-4 font-bold">
                   Bolha das Redes
                 </th>
-                <th scope="col" className="px-6 py-6 font-bold">
+                <th scope="col" className="px-5 py-4 font-bold">
                   Google
                 </th>
-                <th scope="col" className="border-l-2 border-gold bg-accent px-6 py-6 font-bold text-primary">
+                <th scope="col" className="px-5 py-4 font-bold text-gold">
                   O Nosso Guia
                 </th>
               </tr>
@@ -590,12 +595,12 @@ function TabelaComparativa() {
             <tbody>
               {comparativo.map(([criterio, redes, google, guia]) => (
                 <tr key={criterio} className="border-b border-border last:border-0">
-                  <th scope="row" className="px-6 py-6 font-semibold">
+                  <th scope="row" className="px-5 py-4 font-semibold">
                     {criterio}
                   </th>
-                  <td className="px-6 py-6 text-muted-foreground">{redes}</td>
-                  <td className="px-6 py-6 text-muted-foreground">{google}</td>
-                  <td className="border-l-2 border-gold bg-accent px-6 py-6 font-semibold text-foreground">{guia}</td>
+                  <td className="px-5 py-4 text-muted-foreground">{redes}</td>
+                  <td className="px-5 py-4 text-muted-foreground">{google}</td>
+                  <td className="bg-accent/50 px-5 py-4 font-semibold text-foreground">{guia}</td>
                 </tr>
               ))}
             </tbody>
@@ -614,7 +619,8 @@ function Oferta() {
         <div className="rounded-2xl bg-card p-8 shadow-card-lg md:p-10">
           <div className="grid items-center gap-10 md:grid-cols-[1fr_auto]">
             <div>
-              <h2 id="oferta-title" className="text-2xl font-bold md:text-3xl">
+              <p className="eyebrow">Acesso completo</p>
+              <h2 id="oferta-title" className="mt-4 text-2xl font-bold md:text-3xl">
                 Adquira o Acesso Completo
               </h2>
               <p className="mt-6 text-base leading-relaxed md:text-lg">
@@ -635,7 +641,7 @@ function Oferta() {
                 height={1920}
                 loading="lazy"
                 alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
-                className="w-80 max-w-full rounded-lg shadow-cover md:w-96"
+                className="w-56 max-w-full rounded-lg shadow-cover md:w-64"
               />
             </div>
           </div>
@@ -667,9 +673,9 @@ function Oferta() {
               >
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-bold marker:hidden">
                   {f.q}
-                  <ChevronDown
+                  <ArrowRight
                     aria-hidden="true"
-                    className="size-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-180"
+                    className="size-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-90"
                   />
                 </summary>
                 <p className="mt-3 text-base leading-relaxed text-muted-foreground">{f.a}</p>
