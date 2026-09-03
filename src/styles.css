@@ -51,7 +51,7 @@
   --color-chart-5: var(--chart-5);
   --shadow-card: 0 1px 2px oklch(0.24 0.035 255 / 0.07), 0 10px 30px oklch(0.24 0.035 255 / 0.07);
   --shadow-card-lg: 0 2px 4px oklch(0.24 0.035 255 / 0.08), 0 24px 56px oklch(0.24 0.035 255 / 0.12);
-  --shadow-cta: 0 8px 20px oklch(0.62 0.11 85 / 0.25);
+  --shadow-cta: 0 8px 20px oklch(0.72 0.12 95 / 0.25);
   --shadow-editorial: var(--shadow-card);
   --shadow-cover: 0 24px 60px oklch(0.35 0.08 255 / 0.3);
 }
