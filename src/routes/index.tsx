@@ -555,29 +555,34 @@ function ProvaSocial() {
 /* DOBRA 6 — Tabela comparativa */
 function TabelaComparativa() {
   return (
-    <section className="section-pad" aria-labelledby="tabela-title">
-      <div className="mx-auto max-w-4xl px-4">
-        <h2 id="tabela-title" className="rule-gold text-2xl font-bold md:text-3xl">
+    <section className="section-pad bg-primary text-primary-foreground" aria-labelledby="tabela-title">
+      <div className="mx-auto max-w-6xl px-4">
+        <div className="max-w-3xl">
+        <h2 id="tabela-title" className="text-3xl font-bold md:text-5xl">
           Como você prefere se informar a partir de hoje?
         </h2>
-        <div className="mt-10 overflow-x-auto rounded-xl border border-border bg-card shadow-card">
-          <table className="w-full min-w-[34rem] border-collapse text-left text-sm md:text-base">
+        <p className="mt-5 text-lg leading-relaxed text-primary-foreground/75">
+          O argumento central em uma única leitura: compare origem, isenção e custo de tempo antes de escolher sua fonte.
+        </p>
+        </div>
+        <div className="mt-12 overflow-x-auto border border-primary-foreground/25 bg-card text-card-foreground shadow-card-lg">
+          <table className="w-full min-w-[44rem] border-collapse text-left text-base md:text-lg">
             <caption className="sr-only">
               Comparação entre se informar pelas redes sociais, pelo Google ou pelo guia
               comparativo, segundo origem, isenção e tempo.
             </caption>
             <thead>
               <tr className="border-b border-border bg-secondary">
-                <th scope="col" className="px-5 py-4 font-bold">
+                <th scope="col" className="px-6 py-6 font-bold">
                   Critério
                 </th>
-                <th scope="col" className="px-5 py-4 font-bold">
+                <th scope="col" className="px-6 py-6 font-bold">
                   Bolha das Redes
                 </th>
-                <th scope="col" className="px-5 py-4 font-bold">
+                <th scope="col" className="px-6 py-6 font-bold">
                   Google
                 </th>
-                <th scope="col" className="px-5 py-4 font-bold text-gold">
+                <th scope="col" className="border-l-2 border-gold bg-accent px-6 py-6 font-bold text-primary">
                   O Nosso Guia
                 </th>
               </tr>
@@ -585,12 +590,12 @@ function TabelaComparativa() {
             <tbody>
               {comparativo.map(([criterio, redes, google, guia]) => (
                 <tr key={criterio} className="border-b border-border last:border-0">
-                  <th scope="row" className="px-5 py-4 font-semibold">
+                  <th scope="row" className="px-6 py-6 font-semibold">
                     {criterio}
                   </th>
-                  <td className="px-5 py-4 text-muted-foreground">{redes}</td>
-                  <td className="px-5 py-4 text-muted-foreground">{google}</td>
-                  <td className="bg-accent/50 px-5 py-4 font-semibold text-foreground">{guia}</td>
+                  <td className="px-6 py-6 text-muted-foreground">{redes}</td>
+                  <td className="px-6 py-6 text-muted-foreground">{google}</td>
+                  <td className="border-l-2 border-gold bg-accent px-6 py-6 font-semibold text-foreground">{guia}</td>
                 </tr>
               ))}
             </tbody>
@@ -609,8 +614,7 @@ function Oferta() {
         <div className="rounded-2xl bg-card p-8 shadow-card-lg md:p-10">
           <div className="grid items-center gap-10 md:grid-cols-[1fr_auto]">
             <div>
-              <p className="eyebrow">Acesso completo</p>
-              <h2 id="oferta-title" className="mt-4 text-2xl font-bold md:text-3xl">
+              <h2 id="oferta-title" className="text-2xl font-bold md:text-3xl">
                 Adquira o Acesso Completo
               </h2>
               <p className="mt-6 text-base leading-relaxed md:text-lg">
@@ -663,9 +667,9 @@ function Oferta() {
               >
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-bold marker:hidden">
                   {f.q}
-                  <ArrowRight
+                  <ChevronDown
                     aria-hidden="true"
-                    className="size-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-90"
+                    className="size-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-180"
                   />
                 </summary>
                 <p className="mt-3 text-base leading-relaxed text-muted-foreground">{f.a}</p>
