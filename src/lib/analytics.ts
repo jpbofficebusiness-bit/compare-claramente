@@ -16,7 +16,7 @@ export function track(event: string, payload: AnalyticsPayload = {}) {
   window.dataLayer.push({ event, ...payload });
 }
 
-export const CHECKOUT_URL = "[LINK DE CHECKOUT]";
+export const CHECKOUT_URL = "https://checkout.wiven.com.br/checkout/cmtgb8nt70sl901ptq2trevnk?offer=DISP4A2";
 
 export function goToCheckout(location: string) {
   track("begin_checkout", { location, item_name: "ebook_lula_x_bolsonaro" });

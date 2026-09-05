@@ -33,7 +33,7 @@ import { track } from "@/lib/analytics";
  * pelo autor — substitua por relatos reais antes de publicar.
  * ------------------------------------------------------------------------- */
 const OFERTA = {
-  checkout: "[LINK DE CHECKOUT]",
+  checkout: "https://checkout.wiven.com.br/checkout/cmtgb8nt70sl901ptq2trevnk?offer=DISP4A2",
   contato: "[E-MAIL DE CONTATO]",
 };
 
