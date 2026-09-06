@@ -113,7 +113,7 @@ function CardIntro({ slide }: { slide: IntroSlide }) {
       className="flex min-h-full flex-col justify-center px-4 py-16 md:py-24"
     >
       <p className="eyebrow flex items-center gap-2">
-        <Icon aria-hidden="true" className="size-4 text-gold" />
+        <Icon aria-hidden={true} className="size-4 text-gold" />
         {slide.eyebrow}
       </p>
       <h2 className="rule-gold mt-4 text-2xl font-bold md:text-4xl">
@@ -165,7 +165,7 @@ function CardBarra({ slide }: { slide: DataSlide }) {
         <span
           className={`flex size-12 shrink-0 items-center justify-center rounded-xl ${slide.destaque ? "bg-gold text-gold-foreground" : "bg-secondary text-primary"}`}
         >
-          <Icon aria-hidden="true" className="size-6" />
+          <Icon aria-hidden={true} className="size-6" />
         </span>
         <div className="flex-1">
           <div className="flex items-baseline justify-between gap-4">
