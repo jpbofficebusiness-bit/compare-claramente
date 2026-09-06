@@ -18,6 +18,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 import cover from "@/assets/ebook-cover-new.jpg.asset.json";
+import coverCutout from "@/assets/ebook-cover-cutout.png";
 import avatarCarlos from "@/assets/avatars/carlos.jpg";
 import avatarMariana from "@/assets/avatars/mariana.jpg";
 import avatarRoberto from "@/assets/avatars/roberto.jpg";
@@ -209,14 +210,17 @@ function Hero() {
           <span className="text-gold">Compare o que cada um realmente fez.</span>
         </h1>
 
-        <div className="mt-8 w-full max-w-sm px-2 md:max-w-md">
-          <img
-            src={cover.url}
-            width={1920}
-            height={1920}
-            alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
-            className="w-full rounded-lg"
-          />
+        <div className="mt-6 w-full py-8 md:mt-8 md:py-10">
+          <div className="relative mx-auto w-full max-w-[44rem] px-1 sm:px-4">
+            <div className="hero-cover-shadow" aria-hidden="true" />
+            <img
+              src={coverCutout}
+              width={1130}
+              height={714}
+              alt="Dois volumes do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
+              className="hero-cover-float relative z-10 mx-auto h-auto w-full object-contain"
+            />
+          </div>
           <p className="mt-4 flex items-start gap-2 px-1 text-left text-xs leading-relaxed text-muted-foreground">
             <Lock aria-hidden="true" className="mt-0.5 size-3.5 shrink-0 text-gold" />
             <span>

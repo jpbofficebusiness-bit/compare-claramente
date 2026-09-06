@@ -53,6 +53,7 @@
   --shadow-cta: 0 8px 20px oklch(0.75 0.12 95 / 0.4);
   --shadow-editorial: var(--shadow-card);
   --shadow-cover: 0 24px 60px oklch(0.35 0.08 255 / 0.3);
+  --hero-object-shadow: oklch(0.24 0.045 255 / 0.24);
 }
 
 :root {
@@ -145,4 +146,57 @@
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--color-muted-foreground);
+}
+
+@keyframes hero-cover-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes hero-shadow-pulse {
+  0%,
+  100% {
+    opacity: 0.72;
+    transform: translateX(-50%) scaleX(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: translateX(-50%) scaleX(0.78);
+  }
+}
+
+.hero-cover-float {
+  animation: hero-cover-float 4.6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.hero-cover-shadow {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 50%;
+  width: 72%;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, var(--hero-object-shadow) 0%, transparent 72%);
+  filter: blur(14px);
+  animation: hero-shadow-pulse 4.6s ease-in-out infinite;
+  transform-origin: center;
+  will-change: opacity, transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-cover-float,
+  .hero-cover-shadow {
+    animation: none;
+  }
+
+  .hero-cover-shadow {
+    opacity: 0.72;
+    transform: translateX(-50%);
+  }
 }
