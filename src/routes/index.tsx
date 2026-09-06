@@ -211,7 +211,7 @@ function Hero() {
         </h1>
 
         <div className="mt-6 w-full py-8 md:mt-8 md:py-10">
-          <div className="relative mx-auto w-full max-w-[38rem] px-1 sm:px-4">
+          <div className="relative mx-auto w-full max-w-[44rem] px-1 sm:px-4">
             <div className="hero-cover-shadow" aria-hidden="true" />
             <img
               src={coverCutout}
