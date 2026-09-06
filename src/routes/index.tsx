@@ -15,7 +15,6 @@ import {
   ShieldCheck,
   Star,
   Timer,
-  TrendingUp,
 } from "lucide-react";
 import cover from "@/assets/ebook-cover-new.jpg.asset.json";
 import avatarCarlos from "@/assets/avatars/carlos.jpg";
