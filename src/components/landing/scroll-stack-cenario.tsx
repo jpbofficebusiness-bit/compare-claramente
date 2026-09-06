@@ -1,16 +1,36 @@
 import { useEffect, useRef, useState } from "react";
 import { TrendingUp, Scale, Users, EyeOff, Target } from "lucide-react";
 
-const slides = [
-  {
-    id: "intro",
-    eyebrow: "O cenário real",
-    titulo: "Quase metade do país ainda não tem certeza do voto — e é aí que o jogo muda.",
-    descricao:
-      "Pesquisas eleitorais mostram que milhões de brasileiros chegam à reta final sem decisão tomada. Quem decide com base em dados — não em meme — não só vota melhor: influencia a família, o trabalho e o grupo de amigos.",
-    icone: TrendingUp,
-    destaque: false,
-  },
+type BaseSlide = {
+  id: string;
+  descricao: string;
+  icone: React.ComponentType<{ className?: string; "aria-hidden"?: boolean }>;
+  destaque: boolean;
+};
+
+type IntroSlide = BaseSlide & {
+  eyebrow: string;
+  titulo: string;
+};
+
+type DataSlide = BaseSlide & {
+  rotulo: string;
+  valor: number;
+};
+
+type Slide = IntroSlide | DataSlide;
+
+const introSlide: IntroSlide = {
+  id: "intro",
+  eyebrow: "O cenário real",
+  titulo: "Quase metade do país ainda não tem certeza do voto — e é aí que o jogo muda.",
+  descricao:
+    "Pesquisas eleitorais mostram que milhões de brasileiros chegam à reta final sem decisão tomada. Quem decide com base em dados — não em meme — não só vota melhor: influencia a família, o trabalho e o grupo de amigos.",
+  icone: TrendingUp,
+  destaque: false,
+};
+
+const dataSlides: DataSlide[] = [
   {
     id: "decididos",
     rotulo: "Já decidiram o voto",
@@ -40,6 +60,8 @@ const slides = [
   },
 ];
 
+const slides: Slide[] = [introSlide, ...dataSlides];
+
 function useInView<T extends HTMLElement>(options?: IntersectionObserverInit) {
   const ref = useRef<T>(null);
   const [inView, setInView] = useState(false);
@@ -47,8 +69,9 @@ function useInView<T extends HTMLElement>(options?: IntersectionObserverInit) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) setInView(true);
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (entry?.isIntersecting) setInView(true);
     }, { threshold: 0.25, ...options });
     observer.observe(el);
     return () => observer.disconnect();
@@ -80,7 +103,7 @@ function BarraProgresso({
   );
 }
 
-function CardIntro({ slide }: { slide: (typeof slides)[0] }) {
+function CardIntro({ slide }: { slide: IntroSlide }) {
   const Icon = slide.icone;
   const { ref, inView } = useInView<HTMLDivElement>();
 
@@ -101,7 +124,7 @@ function CardIntro({ slide }: { slide: (typeof slides)[0] }) {
       </p>
 
       <div className="mt-10 grid gap-4 sm:grid-cols-3">
-        {slides.slice(1).map((s) => (
+        {dataSlides.map((s) => (
           <div
             key={s.id}
             className="rounded-xl border border-border bg-card/80 p-4 shadow-card backdrop-blur-sm"
@@ -129,7 +152,7 @@ function CardIntro({ slide }: { slide: (typeof slides)[0] }) {
   );
 }
 
-function CardBarra({ slide }: { slide: (typeof slides)[1] }) {
+function CardBarra({ slide }: { slide: DataSlide }) {
   const Icon = slide.icone;
   const { ref, inView } = useInView<HTMLDivElement>();
 
@@ -146,9 +169,7 @@ function CardBarra({ slide }: { slide: (typeof slides)[1] }) {
         </span>
         <div className="flex-1">
           <div className="flex items-baseline justify-between gap-4">
-            <h3
-              className={`text-xl font-bold md:text-2xl ${slide.destaque ? "text-foreground" : "text-foreground"}`}
-            >
+            <h3 className="text-xl font-bold md:text-2xl text-foreground">
               {slide.rotulo}
             </h3>
             <p
@@ -199,6 +220,10 @@ function CardConclusao() {
   );
 }
 
+function isDataSlide(slide: Slide): slide is DataSlide {
+  return "valor" in slide;
+}
+
 export function ScrollStackCenario() {
   return (
     <section
@@ -217,10 +242,10 @@ export function ScrollStackCenario() {
           style={{ zIndex: i + 1 }}
         >
           <div className="mx-auto h-full max-w-4xl">
-            {slide.id === "intro" ? (
-              <CardIntro slide={slide} />
+            {isDataSlide(slide) ? (
+              <CardBarra slide={slide} />
             ) : (
-              <CardBarra slide={slide as (typeof slides)[1]} />
+              <CardIntro slide={slide} />
             )}
           </div>
         </div>
