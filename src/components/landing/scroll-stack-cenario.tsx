@@ -213,14 +213,10 @@ export function ScrollStackCenario() {
       {slides.map((slide, i) => (
         <div
           key={slide.id}
-          className="sticky top-0 h-screen w-full"
+          className="sticky top-0 h-screen w-full border-b border-border bg-background"
           style={{ zIndex: i + 1 }}
         >
-          <div
-            className={`mx-auto h-full max-w-4xl transition-shadow duration-500 ${
-              i < slides.length - 1 ? "shadow-2xl" : ""
-            }`}
-          >
+          <div className="mx-auto h-full max-w-4xl">
             {slide.id === "intro" ? (
               <CardIntro slide={slide} />
             ) : (
@@ -231,10 +227,10 @@ export function ScrollStackCenario() {
       ))}
 
       <div
-        className="sticky top-0 h-screen w-full"
+        className="sticky top-0 h-screen w-full border-b border-border bg-background"
         style={{ zIndex: slides.length + 1 }}
       >
-        <div className="mx-auto h-full max-w-4xl bg-background">
+        <div className="mx-auto h-full max-w-4xl">
           <CardConclusao />
         </div>
       </div>
