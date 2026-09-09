@@ -156,6 +156,7 @@ function useScrollReveal() {
 }
 
 function LandingPage() {
+  useScrollReveal();
   useEffect(() => {
     track("view_landing_page", { page: "ebook_lula_x_bolsonaro" });
   }, []);
