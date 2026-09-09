@@ -5,8 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system — estética SaaS moderna (fundo claro, azul-celeste vibrante,
- * cards arredondados com sombras suaves, tipografia sans pesada).
+ * Design system — estética editorial "Dossiê Oficial".
+ * Paleta inspirada em papel arquivístico, tinta navy e selo dourado envelhecido.
+ * Tipografia serif para títulos (autoridade editorial) e sans para leitura.
  * Todas as cores em oklch. Nunca usar cores literais em componentes.
  */
 
@@ -17,7 +18,7 @@
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
-  --font-display: "Inter", system-ui, sans-serif;
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
   --font-sans: "Source Sans 3", system-ui, sans-serif;
   --font-serif: var(--font-display);
   --color-background: var(--background);
@@ -48,43 +49,43 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  --shadow-card: 0 1px 2px oklch(0.55 0.08 240 / 0.06), 0 8px 24px oklch(0.55 0.08 240 / 0.08);
-  --shadow-card-lg: 0 2px 4px oklch(0.55 0.08 240 / 0.06), 0 20px 48px oklch(0.55 0.08 240 / 0.12);
-  --shadow-cta: 0 8px 20px oklch(0.75 0.12 95 / 0.4);
+  --shadow-card: 0 1px 1px oklch(0.35 0.03 80 / 0.04), 0 6px 16px oklch(0.35 0.03 80 / 0.06);
+  --shadow-card-lg: 0 2px 4px oklch(0.35 0.03 80 / 0.05), 0 18px 40px oklch(0.35 0.03 80 / 0.10);
+  --shadow-cta: 0 6px 16px oklch(0.55 0.10 80 / 0.35);
   --shadow-editorial: var(--shadow-card);
-  --shadow-cover: 0 24px 60px oklch(0.35 0.08 255 / 0.3);
-  --hero-object-shadow: oklch(0.24 0.045 255 / 0.24);
+  --shadow-cover: 0 24px 60px oklch(0.25 0.06 255 / 0.25);
+  --hero-object-shadow: oklch(0.20 0.04 255 / 0.22);
 }
 
 :root {
-  --radius: 0.75rem;
-  --background: oklch(0.99 0.004 145);
-  --foreground: oklch(0.3 0.07 265);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.3 0.07 265);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.3 0.07 265);
-  --primary: oklch(0.35 0.09 265);
-  --primary-foreground: oklch(0.985 0.004 240);
-  --secondary: oklch(0.965 0.015 150);
-  --secondary-foreground: oklch(0.3 0.07 265);
-  --muted: oklch(0.965 0.015 150);
-  --muted-foreground: oklch(0.5 0.04 260);
-  --accent: oklch(0.93 0.04 150);
-  --accent-foreground: oklch(0.4 0.1 155);
-  --gold: oklch(0.75 0.12 95);
-  --gold-foreground: oklch(0.25 0.05 265);
-  --crimson: oklch(0.55 0.19 25);
-  --destructive: oklch(0.577 0.215 27);
+  --radius: 0.5rem;
+  --background: oklch(0.97 0.006 85);
+  --foreground: oklch(0.20 0.04 260);
+  --card: oklch(0.99 0.004 90);
+  --card-foreground: oklch(0.20 0.04 260);
+  --popover: oklch(0.99 0.004 90);
+  --popover-foreground: oklch(0.20 0.04 260);
+  --primary: oklch(0.22 0.05 255);
+  --primary-foreground: oklch(0.98 0.004 240);
+  --secondary: oklch(0.94 0.012 90);
+  --secondary-foreground: oklch(0.25 0.05 265);
+  --muted: oklch(0.92 0.010 90);
+  --muted-foreground: oklch(0.45 0.04 260);
+  --accent: oklch(0.93 0.018 85);
+  --accent-foreground: oklch(0.30 0.07 85);
+  --gold: oklch(0.62 0.11 85);
+  --gold-foreground: oklch(0.18 0.04 265);
+  --crimson: oklch(0.52 0.18 25);
+  --destructive: oklch(0.55 0.20 27);
   --destructive-foreground: oklch(0.985 0.004 240);
-  --border: oklch(0.91 0.015 160);
-  --input: oklch(0.91 0.015 160);
-  --ring: oklch(0.75 0.12 95);
-  --chart-1: oklch(0.55 0.12 155);
-  --chart-2: oklch(0.45 0.1 265);
-  --chart-3: oklch(0.62 0.04 255);
-  --chart-4: oklch(0.577 0.215 27);
-  --chart-5: oklch(0.8 0.02 255);
+  --border: oklch(0.86 0.012 90);
+  --input: oklch(0.86 0.012 90);
+  --ring: oklch(0.62 0.11 85);
+  --chart-1: oklch(0.55 0.12 85);
+  --chart-2: oklch(0.35 0.08 255);
+  --chart-3: oklch(0.55 0.10 155);
+  --chart-4: oklch(0.55 0.20 27);
+  --chart-5: oklch(0.75 0.04 255);
 }
 
 @layer base {
@@ -104,33 +105,39 @@
   h3,
   blockquote {
     font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+
+  h1 {
     letter-spacing: -0.03em;
+    line-height: 1.05;
   }
 }
 
 @utility section-pad {
-  padding-block: 3.5rem;
+  padding-block: 4rem;
   @media (width >= 768px) {
-    padding-block: 5.5rem;
+    padding-block: 6rem;
   }
 }
 
 @utility eyebrow {
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-gold);
+  font-family: var(--font-sans);
 }
 
 @utility rule-gold {
   &::after {
     content: "";
     display: block;
-    width: 3.5rem;
-    height: 4px;
-    margin-top: 1rem;
-    border-radius: 999px;
+    width: 2.5rem;
+    height: 3px;
+    margin-top: 0.875rem;
     background-color: var(--color-gold);
   }
 }
@@ -146,6 +153,31 @@
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--color-muted-foreground);
+  font-family: var(--font-sans);
+}
+
+@utility hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-border) 20%, var(--color-border) 80%, transparent);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 @keyframes hero-cover-float {
