@@ -264,7 +264,7 @@ function BarraEscassez() {
 /* DOBRA 1 — Hero: a promessa */
 function Hero() {
   return (
-    <section className="bg-secondary" aria-labelledby="hero-title">
+    <section className="reveal bg-secondary" aria-labelledby="hero-title">
       <div className="mx-auto flex max-w-3xl flex-col items-center px-4 pt-14 pb-16 text-center md:pt-20 md:pb-24">
         <span className="pill-badge">
           <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
@@ -332,7 +332,7 @@ function Hero() {
 /* Faixa de confiança */
 function FaixaConfianca() {
   return (
-    <section aria-label="Compromissos de transparência" className="border-y border-border bg-card">
+    <section aria-label="Compromissos de transparência" className="reveal border-y border-border bg-card">
       <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-12 gap-y-4 px-4 py-6">
         {confianca.map((c) => (
           <p
@@ -351,7 +351,7 @@ function FaixaConfianca() {
 /* DOBRA 2 — Texto corrido: identificação */
 function Identificacao() {
   return (
-    <section className="section-pad" aria-labelledby="ident-title">
+    <section className="reveal section-pad" aria-labelledby="ident-title">
       <div className="mx-auto max-w-2xl px-4">
         <p className="eyebrow">O problema</p>
         <h2 id="ident-title" className="rule-gold mt-3 text-[1.625rem] leading-tight font-bold md:text-[2.125rem]">
@@ -373,7 +373,7 @@ function Identificacao() {
 /* DOBRA 3 — Implicações: a dor */
 function Implicacoes() {
   return (
-    <section className="section-pad bg-secondary" aria-labelledby="dor-title">
+    <section className="reveal section-pad bg-secondary" aria-labelledby="dor-title">
       <div className="mx-auto max-w-3xl px-4">
         <p className="eyebrow">O custo oculto</p>
         <h2 id="dor-title" className="rule-gold mt-3 text-[1.625rem] leading-tight font-bold md:text-[2.125rem]">
@@ -400,7 +400,7 @@ function Implicacoes() {
 /* DOBRA 4 — Mecanismo único: a solução */
 function Mecanismo() {
   return (
-    <section id="metodo" className="section-pad" aria-labelledby="mec-title">
+    <section id="metodo" className="reveal section-pad" aria-labelledby="mec-title">
       <div className="mx-auto max-w-5xl px-4">
         <div className="max-w-2xl">
           <p className="eyebrow">O método</p>
@@ -469,7 +469,7 @@ function GraficoIndecisos() {
   ];
 
   return (
-    <section className="section-pad bg-secondary" aria-labelledby="grafico-title">
+    <section className="reveal section-pad bg-secondary" aria-labelledby="grafico-title">
       <div className="mx-auto max-w-3xl px-4">
         <p className="eyebrow flex items-center gap-2">
           <TrendingUp aria-hidden="true" className="size-4 text-gold" />
@@ -540,7 +540,7 @@ function GraficoIndecisos() {
 /* DOBRA 5 — Prova social contextualizada */
 function ProvaSocial() {
   return (
-    <section className="section-pad" aria-labelledby="prova-title">
+    <section className="reveal section-pad" aria-labelledby="prova-title">
       <div className="mx-auto max-w-3xl px-4">
         <p className="eyebrow">Depoimentos</p>
         <h2 id="prova-title" className="rule-gold mt-3 text-[1.625rem] leading-tight font-bold md:text-[2.125rem]">
@@ -648,7 +648,7 @@ function ProvaSocial() {
 /* DOBRA 6 — Tabela comparativa */
 function TabelaComparativa() {
   return (
-    <section className="section-pad bg-secondary" aria-labelledby="tabela-title">
+    <section className="reveal section-pad bg-secondary" aria-labelledby="tabela-title">
       <div className="mx-auto max-w-4xl px-4">
         <p className="eyebrow">Comparação</p>
         <h2 id="tabela-title" className="rule-gold mt-3 text-[1.625rem] leading-tight font-bold md:text-[2.125rem]">
@@ -698,7 +698,7 @@ function TabelaComparativa() {
 /* DOBRA 7 — Oferta, garantia e FAQ */
 function Oferta() {
   return (
-    <section id="oferta" className="section-pad" aria-labelledby="oferta-title">
+    <section id="oferta" className="reveal section-pad" aria-labelledby="oferta-title">
       <div className="mx-auto max-w-3xl px-4">
         <div className="flex justify-center px-2">
           <img
