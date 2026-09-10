@@ -272,7 +272,7 @@ function Hero() {
         </span>
         <h1
           id="hero-title"
-          className="mt-6 text-[1.75rem] leading-[1.08] font-extrabold md:text-[2.75rem] lg:text-[3.25rem]"
+          className="mt-6 text-[1.75rem] leading-[1.08] font-extrabold text-foreground md:text-[2.75rem] lg:text-[3.25rem]"
         >
           Chega de discutir política com base em Instagram, notícias que você não sabe a
           procedência e grupos aleatórios.{" "}
