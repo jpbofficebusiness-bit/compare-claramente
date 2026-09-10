@@ -133,30 +133,7 @@ const confianca = [
 
 /* ------------------------------- componentes ------------------------------ */
 
-function useScrollReveal() {
-  useEffect(() => {
-    const nodes = document.querySelectorAll(".reveal");
-    if (!nodes.length) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
-    );
-
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
-  }, []);
-}
-
 function LandingPage() {
-  useScrollReveal();
   useEffect(() => {
     track("view_landing_page", { page: "ebook_lula_x_bolsonaro" });
   }, []);
@@ -177,52 +154,6 @@ function LandingPage() {
       </main>
       <Footer />
       <MobileBar />
-    </div>
-  );
-}
-
-/* Selo de garantia factual — elemento visual marcante do dossiê */
-function SeloGarantia({ className = "" }: { className?: string }) {
-  return (
-    <div className={`${className}`} aria-hidden="true">
-      <svg viewBox="0 0 120 120" className="h-full w-full">
-        <defs>
-          <filter id="selo-texture">
-            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" result="noise" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.2" />
-          </filter>
-        </defs>
-        <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" strokeWidth="2.5" opacity="0.9" />
-        <circle cx="60" cy="60" r="48" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.6" />
-        <path
-          id="topArc"
-          d="M 18,60 A 42,42 0 0,1 102,60"
-          fill="none"
-        />
-        <path
-          id="bottomArc"
-          d="M 22,60 A 38,38 0 0,0 98,60"
-          fill="none"
-        />
-        <text className="fill-current font-sans text-[9px] font-bold uppercase tracking-[0.18em]">
-          <textPath href="#topArc" startOffset="50%" textAnchor="middle">
-            Garantia Factual
-          </textPath>
-        </text>
-        <text className="fill-current font-sans text-[8px] font-semibold uppercase tracking-[0.12em]">
-          <textPath href="#bottomArc" startOffset="50%" textAnchor="middle">
-            7 Dias · 100% Risco Zero
-          </textPath>
-        </text>
-        <text
-          x="60"
-          y="66"
-          textAnchor="middle"
-          className="fill-current font-display text-[28px] font-extrabold"
-        >
-          OK
-        </text>
-      </svg>
     </div>
   );
 }
@@ -264,15 +195,15 @@ function BarraEscassez() {
 /* DOBRA 1 — Hero: a promessa */
 function Hero() {
   return (
-    <section className="reveal bg-secondary" aria-labelledby="hero-title">
-      <div className="mx-auto flex max-w-3xl flex-col items-center px-4 pt-14 pb-16 text-center md:pt-20 md:pb-24">
+    <section className="bg-secondary" aria-labelledby="hero-title">
+      <div className="mx-auto flex max-w-3xl flex-col items-center px-4 py-16 text-center md:py-24">
         <span className="pill-badge">
           <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
           E-book · Guia comparativo
         </span>
         <h1
           id="hero-title"
-          className="mt-6 text-[1.75rem] leading-[1.08] font-extrabold text-foreground md:text-[2.75rem] lg:text-[3.25rem]"
+          className="mt-6 text-3xl leading-tight font-extrabold md:text-5xl md:leading-tight"
         >
           Chega de discutir política com base em Instagram, notícias que você não sabe a
           procedência e grupos aleatórios.{" "}
@@ -289,7 +220,6 @@ function Hero() {
               alt="Dois volumes do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
               className="hero-cover-float relative z-10 mx-auto h-auto w-full object-contain"
             />
-            <SeloGarantia className="absolute -right-2 -bottom-4 z-20 w-20 text-gold md:-right-6 md:-bottom-8 md:w-28" />
           </div>
           <p className="mt-4 flex items-start gap-2 px-1 text-left text-xs leading-relaxed text-muted-foreground">
             <Lock aria-hidden="true" className="mt-0.5 size-3.5 shrink-0 text-gold" />
@@ -300,7 +230,7 @@ function Hero() {
           </p>
         </div>
 
-        <p className="mt-2 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+        <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
           O guia comparativo definitivo que coloca lado a lado o que Lula e Bolsonaro realmente
           fizeram, fundamentado estritamente em dados oficiais — através de uma triagem em 4
           camadas que separa Fato, Interpretação e Acusação.
@@ -332,7 +262,7 @@ function Hero() {
 /* Faixa de confiança */
 function FaixaConfianca() {
   return (
-    <section aria-label="Compromissos de transparência" className="reveal border-y border-border bg-card">
+    <section aria-label="Compromissos de transparência" className="border-y border-border bg-card">
       <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-12 gap-y-4 px-4 py-6">
         {confianca.map((c) => (
           <p
@@ -351,13 +281,12 @@ function FaixaConfianca() {
 /* DOBRA 2 — Texto corrido: identificação */
 function Identificacao() {
   return (
-    <section className="reveal section-pad" aria-labelledby="ident-title">
+    <section className="section-pad" aria-labelledby="ident-title">
       <div className="mx-auto max-w-2xl px-4">
-        <p className="eyebrow">O problema</p>
-        <h2 id="ident-title" className="rule-gold mt-3 text-[1.625rem] leading-tight font-bold md:text-[2.125rem]">
+        <h2 id="ident-title" className="rule-gold text-2xl font-bold md:text-3xl">
           Se você está cansado do estresse e da polarização, você não está sozinho.
         </h2>
-        <p className="mt-8 text-base leading-[1.85] md:text-lg">
+        <p className="mt-8 text-base leading-loose md:text-lg">
           Você quer apenas votar com a consciência tranquila e ter dados seguros para debater. Mas,
           ao abrir as redes sociais ou ligar a TV, tudo o que você encontra são cortes rápidos de
           podcast, memes raivosos ou threads de internet sem qualquer fonte. Se tenta ler um "guia
@@ -373,18 +302,14 @@ function Identificacao() {
 /* DOBRA 3 — Implicações: a dor */
 function Implicacoes() {
   return (
-    <section className="reveal section-pad bg-secondary" aria-labelledby="dor-title">
+    <section className="section-pad bg-secondary" aria-labelledby="dor-title">
       <div className="mx-auto max-w-3xl px-4">
-        <p className="eyebrow">O custo oculto</p>
-        <h2 id="dor-title" className="rule-gold mt-3 text-[1.625rem] leading-tight font-bold md:text-[2.125rem]">
+        <h2 id="dor-title" className="rule-gold text-2xl font-bold md:text-3xl">
           O custo invisível de não ter dados seguros na mão
         </h2>
         <ul className="mt-10 space-y-5">
           {dores.map((d) => (
-            <li
-              key={d}
-              className="flex gap-4 rounded-lg border-l-4 border-gold bg-card p-6 shadow-card"
-            >
+            <li key={d} className="flex gap-4 rounded-xl bg-card p-6 shadow-card">
               <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-accent">
                 <Quote aria-hidden="true" className="size-5 text-gold" />
               </span>
@@ -400,11 +325,10 @@ function Implicacoes() {
 /* DOBRA 4 — Mecanismo único: a solução */
 function Mecanismo() {
   return (
-    <section id="metodo" className="reveal section-pad" aria-labelledby="mec-title">
+    <section id="metodo" className="section-pad" aria-labelledby="mec-title">
       <div className="mx-auto max-w-5xl px-4">
         <div className="max-w-2xl">
-          <p className="eyebrow">O método</p>
-          <h2 id="mec-title" className="rule-gold mt-3 text-[1.625rem] leading-tight font-bold md:text-[2.125rem]">
+          <h2 id="mec-title" className="rule-gold text-2xl font-bold md:text-3xl">
             Não vendemos opiniões prontas. Entregamos a régua.
           </h2>
           <p className="mt-8 text-base leading-relaxed text-muted-foreground md:text-lg">
@@ -416,11 +340,8 @@ function Mecanismo() {
           {passos.map((p) => (
             <li
               key={p.n}
-              className="relative rounded-lg border border-border bg-card p-6 shadow-card transition-shadow hover:shadow-card-lg"
+              className="rounded-xl border border-border bg-card p-6 shadow-card transition-shadow hover:shadow-card-lg"
             >
-              <span className="absolute top-4 right-4 font-display text-5xl font-extrabold leading-none text-gold/15 select-none">
-                {p.n}
-              </span>
               <span className="flex size-10 items-center justify-center rounded-lg bg-gold font-display text-lg font-extrabold text-gold-foreground">
                 {p.n}
               </span>
@@ -429,7 +350,7 @@ function Mecanismo() {
             </li>
           ))}
         </ol>
-        <div className="mt-10 flex items-start gap-4 rounded-lg border border-gold/30 bg-accent p-6 md:p-8">
+        <div className="mt-10 flex items-start gap-4 rounded-xl bg-accent p-6 md:p-8">
           <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-card shadow-card">
             <BookOpenCheck aria-hidden="true" className="size-5 text-gold" />
           </span>
@@ -469,13 +390,13 @@ function GraficoIndecisos() {
   ];
 
   return (
-    <section className="reveal section-pad bg-secondary" aria-labelledby="grafico-title">
+    <section className="section-pad" aria-labelledby="grafico-title">
       <div className="mx-auto max-w-3xl px-4">
         <p className="eyebrow flex items-center gap-2">
           <TrendingUp aria-hidden="true" className="size-4 text-gold" />
           O cenário real
         </p>
-        <h2 id="grafico-title" className="rule-gold mt-3 text-[1.625rem] leading-tight font-bold md:text-[2.125rem]">
+        <h2 id="grafico-title" className="rule-gold mt-4 text-2xl font-bold md:text-3xl">
           Quase metade do país ainda não tem certeza do voto — e é aí que o jogo muda
         </h2>
         <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
@@ -518,7 +439,7 @@ function GraficoIndecisos() {
           ))}
         </div>
 
-        <div className="mt-8 flex items-start gap-4 rounded-lg border border-gold/30 bg-accent p-6">
+        <div className="mt-8 flex items-start gap-4 rounded-xl bg-accent p-6">
           <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-card shadow-card">
             <Scale aria-hidden="true" className="size-5 text-gold" />
           </span>
@@ -540,10 +461,9 @@ function GraficoIndecisos() {
 /* DOBRA 5 — Prova social contextualizada */
 function ProvaSocial() {
   return (
-    <section className="reveal section-pad" aria-labelledby="prova-title">
+    <section className="section-pad bg-secondary" aria-labelledby="prova-title">
       <div className="mx-auto max-w-3xl px-4">
-        <p className="eyebrow">Depoimentos</p>
-        <h2 id="prova-title" className="rule-gold mt-3 text-[1.625rem] leading-tight font-bold md:text-[2.125rem]">
+        <h2 id="prova-title" className="rule-gold text-2xl font-bold md:text-3xl">
           Quem decide com base em método não depende de torcida
         </h2>
         <div className="mt-12 grid gap-5 sm:grid-cols-2">
@@ -605,7 +525,7 @@ function ProvaSocial() {
           ].map((t) => (
             <figure
               key={t.nome}
-              className="flex flex-col rounded-lg border border-border bg-card p-6 shadow-card transition-shadow hover:shadow-card-lg"
+              className="flex flex-col rounded-xl border border-border bg-card p-6 shadow-card transition-shadow hover:shadow-card-lg"
             >
               <div className="flex items-center gap-3">
                 <img
@@ -648,20 +568,19 @@ function ProvaSocial() {
 /* DOBRA 6 — Tabela comparativa */
 function TabelaComparativa() {
   return (
-    <section className="reveal section-pad bg-secondary" aria-labelledby="tabela-title">
+    <section className="section-pad" aria-labelledby="tabela-title">
       <div className="mx-auto max-w-4xl px-4">
-        <p className="eyebrow">Comparação</p>
-        <h2 id="tabela-title" className="rule-gold mt-3 text-[1.625rem] leading-tight font-bold md:text-[2.125rem]">
+        <h2 id="tabela-title" className="rule-gold text-2xl font-bold md:text-3xl">
           Como você prefere se informar a partir de hoje?
         </h2>
-        <div className="mt-10 overflow-x-auto rounded-lg border border-border bg-card shadow-card">
+        <div className="mt-10 overflow-x-auto rounded-xl border border-border bg-card shadow-card">
           <table className="w-full min-w-[34rem] border-collapse text-left text-sm md:text-base">
             <caption className="sr-only">
               Comparação entre se informar pelas redes sociais, pelo Google ou pelo guia
               comparativo, segundo origem, isenção e tempo.
             </caption>
             <thead>
-              <tr className="border-b border-border bg-primary text-primary-foreground">
+              <tr className="border-b border-border bg-secondary">
                 <th scope="col" className="px-5 py-4 font-bold">
                   Critério
                 </th>
@@ -684,7 +603,7 @@ function TabelaComparativa() {
                   </th>
                   <td className="px-5 py-4 text-muted-foreground">{redes}</td>
                   <td className="px-5 py-4 text-muted-foreground">{google}</td>
-                  <td className="bg-accent/60 px-5 py-4 font-semibold text-foreground">{guia}</td>
+                  <td className="bg-accent/50 px-5 py-4 font-semibold text-foreground">{guia}</td>
                 </tr>
               ))}
             </tbody>
@@ -698,23 +617,21 @@ function TabelaComparativa() {
 /* DOBRA 7 — Oferta, garantia e FAQ */
 function Oferta() {
   return (
-    <section id="oferta" className="reveal section-pad" aria-labelledby="oferta-title">
+    <section id="oferta" className="section-pad bg-secondary" aria-labelledby="oferta-title">
       <div className="mx-auto max-w-3xl px-4">
-        <div className="relative mx-auto w-full max-w-[28rem] px-2 py-6">
-          <div className="hero-cover-shadow" aria-hidden="true" />
+        <div className="flex justify-center px-2">
           <img
-            src={coverCutout}
-            width={1130}
-            height={714}
+            src={cover.url}
+            width={1920}
+            height={1920}
             alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
-            className="hero-cover-float relative z-10 h-auto w-full object-contain"
+            className="w-full max-w-sm rounded-lg md:max-w-md"
           />
         </div>
 
-        <div className="relative mt-8 rounded-lg border border-gold/40 bg-card p-8 shadow-card-lg md:p-10">
-          <SeloGarantia className="absolute -top-8 -right-4 z-10 w-20 text-gold md:-top-10 md:-right-6 md:w-24" />
+        <div className="mt-8 rounded-2xl bg-card p-8 shadow-card-lg md:p-10">
           <p className="eyebrow">Acesso completo</p>
-          <h2 id="oferta-title" className="mt-4 text-[1.625rem] leading-tight font-bold md:text-[2.125rem]">
+          <h2 id="oferta-title" className="mt-4 text-2xl font-bold md:text-3xl">
             Adquira o Acesso Completo
           </h2>
           <p className="mt-6 text-base leading-relaxed md:text-lg">
@@ -729,7 +646,7 @@ function Oferta() {
           </div>
         </div>
 
-        <div className="mt-8 flex items-start gap-4 rounded-lg border border-gold/30 bg-accent p-6 md:p-8">
+        <div className="mt-8 flex items-start gap-4 rounded-xl border border-gold/30 bg-accent p-6 md:p-8">
           <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-card shadow-card">
             <FileCheck2 aria-hidden="true" className="size-5 text-gold" />
           </span>
@@ -751,7 +668,7 @@ function Oferta() {
             {faq.map((f) => (
               <details
                 key={f.q}
-                className="group rounded-lg border border-border bg-card px-6 py-5 shadow-card"
+                className="group rounded-xl border border-border bg-card px-6 py-5 shadow-card"
               >
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-bold marker:hidden">
                   {f.q}
