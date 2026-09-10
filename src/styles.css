@@ -74,7 +74,7 @@
   --accent: oklch(0.93 0.018 85);
   --accent-foreground: oklch(0.30 0.07 85);
   --gold: oklch(0.62 0.11 85);
-  --gold-foreground: oklch(0.18 0.04 265);
+  --gold-foreground: oklch(0.985 0.004 240);
   --crimson: oklch(0.52 0.18 25);
   --destructive: oklch(0.55 0.20 27);
   --destructive-foreground: oklch(0.985 0.004 240);

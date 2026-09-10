@@ -272,7 +272,7 @@ function Hero() {
         </span>
         <h1
           id="hero-title"
-          className="mt-6 text-[1.75rem] leading-[1.08] font-extrabold md:text-[2.75rem] lg:text-[3.25rem]"
+          className="mt-6 text-[1.75rem] leading-[1.08] font-extrabold text-foreground md:text-[2.75rem] lg:text-[3.25rem]"
         >
           Chega de discutir política com base em Instagram, notícias que você não sabe a
           procedência e grupos aleatórios.{" "}
@@ -700,13 +700,14 @@ function Oferta() {
   return (
     <section id="oferta" className="reveal section-pad" aria-labelledby="oferta-title">
       <div className="mx-auto max-w-3xl px-4">
-        <div className="flex justify-center px-2">
+        <div className="relative mx-auto w-full max-w-[28rem] px-2 py-6">
+          <div className="hero-cover-shadow" aria-hidden="true" />
           <img
-            src={cover.url}
-            width={1920}
-            height={1920}
+            src={coverCutout}
+            width={1130}
+            height={714}
             alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
-            className="w-full max-w-sm rounded-lg md:max-w-md"
+            className="hero-cover-float relative z-10 h-auto w-full object-contain"
           />
         </div>
 
