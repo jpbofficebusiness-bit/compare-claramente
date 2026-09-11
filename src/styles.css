@@ -200,3 +200,23 @@
     transform: translateX(-50%);
   }
 }
+
+/* Barras do gráfico: crescem ao entrar na tela (desligado se o usuário
+   prefere menos movimento). */
+.bar-grow {
+  transition: width 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .bar-grow {
+    transition: none;
+  }
+}
