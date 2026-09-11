@@ -489,11 +489,13 @@ function Mecanismo() {
         <div className="lg:col-span-7">
           <ol className="relative border-l border-border pl-8 sm:pl-10">
             {passos.map((p) => (
-              <li key={p.n} className="relative pb-10 last:pb-0">
-                <span className="absolute top-0 -left-8 flex size-9 items-center justify-center rounded-full bg-gold font-display text-sm font-extrabold text-gold-foreground sm:-left-10 sm:size-10 sm:text-base">
-                  {p.n}
-                </span>
-                <h3 className="font-display text-lg font-bold tracking-tight md:text-xl">{p.t}</h3>
+              <li key={p.n} className="pb-10 last:pb-0">
+                <div className="flex items-center gap-4">
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-gold font-display text-sm font-extrabold text-gold-foreground sm:size-10 sm:text-base">
+                    {p.n}
+                  </span>
+                  <h3 className="font-display text-lg font-bold tracking-tight md:text-xl">{p.t}</h3>
+                </div>
                 <p className="mt-2 text-base leading-relaxed text-muted-foreground">{p.d}</p>
               </li>
             ))}
