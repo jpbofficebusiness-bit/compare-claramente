@@ -299,7 +299,7 @@ function SiteHeader() {
       <div className={`${SHELL} flex h-16 items-center gap-6`}>
         <a
           href="#hero-title"
-          className="flex min-w-0 items-center gap-2 rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+          className="mx-auto flex min-w-0 items-center gap-2 rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none sm:mx-0"
         >
           <span className="size-2.5 shrink-0 rounded-full bg-gold" aria-hidden="true" />
           <span className="truncate font-display text-sm font-extrabold tracking-tight">
