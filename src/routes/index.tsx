@@ -303,7 +303,7 @@ function SiteHeader() {
         >
           <span className="size-2.5 shrink-0 rounded-full bg-gold" aria-hidden="true" />
           <span className="truncate font-display text-sm font-extrabold tracking-tight">
-            Guia comparativo
+            Sua Blindagem Eleitoral Antimanipulação
           </span>
         </a>
         <nav aria-label="Seções da página" className="ml-auto hidden lg:block">
