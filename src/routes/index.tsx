@@ -623,13 +623,33 @@ function GraficoIndecisos() {
 
 /* Comparação — tabela */
 function TabelaComparativa() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [progresso, setProgresso] = useState(0);
+
+  const atualizarProgresso = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    setProgresso(max > 0 ? Math.min(100, Math.max(0, (el.scrollLeft / max) * 100)) : 0);
+  };
+
+  useEffect(() => {
+    atualizarProgresso();
+    window.addEventListener("resize", atualizarProgresso);
+    return () => window.removeEventListener("resize", atualizarProgresso);
+  }, []);
+
   return (
     <section className="section-pad" aria-labelledby="tabela-title">
       <div className={SHELL}>
         <h2 id="tabela-title" className="rule-gold max-w-2xl text-2xl font-bold md:text-4xl">
           Como você prefere se informar a partir de hoje?
         </h2>
-        <div className="mt-10 overflow-x-auto rounded-xl border border-border bg-card shadow-card">
+        <div
+          ref={scrollRef}
+          onScroll={atualizarProgresso}
+          className="mt-10 overflow-x-auto rounded-xl border border-border bg-card shadow-card"
+        >
           <table className="w-full min-w-[34rem] border-collapse text-left text-sm md:text-base">
             <caption className="sr-only">
               Comparação entre se informar pelas redes sociais, pelo Google ou pelo guia comparativo,
@@ -664,6 +684,19 @@ function TabelaComparativa() {
               ))}
             </tbody>
           </table>
+        </div>
+        <div
+          className="mt-3 h-1 overflow-hidden rounded-full bg-border md:hidden"
+          role="progressbar"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.round(progresso)}
+          aria-label="Progresso da rolagem da tabela"
+        >
+          <div
+            className="h-full rounded-full bg-gold transition-[width]"
+            style={{ width: `${progresso}%` }}
+          />
         </div>
       </div>
     </section>
