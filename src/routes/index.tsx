@@ -258,7 +258,7 @@ function LandingPage() {
 
 /* Barra de escassez — topo */
 function BarraEscassez() {
-  const [restam, setRestam] = useState(2 * 60 * 60);
+  const [restam, setRestam] = useState(14 * 60);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -279,7 +279,7 @@ function BarraEscassez() {
       >
         <p className="flex items-center gap-2 text-sm font-semibold sm:text-base">
           <Timer aria-hidden="true" className="size-4 text-gold" />
-          Oferta especial acaba em 2 horas
+          Oferta especial acaba em 14 minutos
         </p>
         <span
           className="rounded-md bg-gold px-3 py-1 font-mono text-sm font-bold text-gold-foreground tabular-nums"
