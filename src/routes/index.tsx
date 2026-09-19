@@ -337,7 +337,7 @@ function Hero() {
       <div className={`${SHELL} flex flex-col items-center py-14 text-center md:py-20 lg:py-24`}>
         <span className="pill-badge">
           <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
-          E-book · Guia comparativo
+          Guia comparativo: Sua Blindagem Eleitoral Antimanipulação
         </span>
         <h1
           id="hero-title"
