@@ -28,6 +28,7 @@ import avatarJoao from "@/assets/avatars/joao.jpg";
 import avatarAline from "@/assets/avatars/aline.jpg";
 import { CtaLink } from "@/components/landing/cta-button";
 import { track } from "@/lib/analytics";
+import { SocialProofNotification } from "@/components/SocialProofNotification";
 
 /* ---------------------------------------------------------------------------
  * Campos editáveis da oferta. Substitua os placeholders pelos dados reais.
@@ -246,6 +247,7 @@ function LandingPage() {
       </main>
       <Footer />
       <MobileBar />
+      <SocialProofNotification />
     </div>
   );
 }
