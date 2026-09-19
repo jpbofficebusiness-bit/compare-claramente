@@ -321,7 +321,7 @@ function SiteHeader() {
           </ul>
         </nav>
         <div className="ml-auto hidden lg:ml-0 sm:block">
-          <CtaLink href="#oferta" tone="gold" size="sm" location="header">
+          <CtaLink href={OFERTA.checkout} tone="gold" size="sm" location="header">
             QUERO ACESSAR O GUIA
           </CtaLink>
         </div>
@@ -375,7 +375,7 @@ function Hero() {
         </p>
 
         <div className="mt-9 flex w-full flex-col items-center gap-4 sm:w-auto sm:flex-row sm:justify-center">
-          <CtaLink href="#oferta" tone="gold" size="lg" full location="hero_primary" className="sm:w-auto">
+          <CtaLink href={OFERTA.checkout} tone="gold" size="lg" full location="hero_primary" className="sm:w-auto">
             QUERO ACESSAR O GUIA COMPARATIVO
           </CtaLink>
           <CtaLink href="#metodo" tone="quiet" size="md" location="hero_secondary">
@@ -911,7 +911,7 @@ function Footer() {
 function MobileBar() {
   return (
     <div className="sticky bottom-0 z-40 border-t border-border bg-card/95 p-3 backdrop-blur md:hidden">
-      <CtaLink href="#oferta" tone="gold" size="md" full location="mobile_bar">
+      <CtaLink href={OFERTA.checkout} tone="gold" size="md" full location="mobile_bar">
         QUERO ACESSAR O GUIA
       </CtaLink>
     </div>
