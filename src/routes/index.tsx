@@ -10,6 +10,7 @@ import {
   Mail,
   MessageCircle,
   Minus,
+  MoveHorizontal,
   PlayCircle,
   Plus,
   Scale,
@@ -226,6 +227,9 @@ const barras = [
 function LandingPage() {
   useEffect(() => {
     track("view_landing_page", { page: "ebook_lula_x_bolsonaro" });
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
   }, []);
 
   return (
@@ -645,10 +649,14 @@ function TabelaComparativa() {
         <h2 id="tabela-title" className="rule-gold max-w-2xl text-2xl font-bold md:text-4xl">
           Como você prefere se informar a partir de hoje?
         </h2>
+        <p className="mt-4 flex items-center gap-2 text-sm font-semibold text-muted-foreground md:hidden">
+          <MoveHorizontal aria-hidden="true" className="size-4 shrink-0 animate-pulse text-gold" />
+          Arraste para o lado para ver tudo
+        </p>
         <div
           ref={scrollRef}
           onScroll={atualizarProgresso}
-          className="mt-10 overflow-x-auto rounded-xl border border-border bg-card shadow-card"
+          className="mt-6 overflow-x-auto rounded-xl border border-border bg-card shadow-card"
         >
           <table className="w-full min-w-[34rem] border-collapse text-left text-sm md:text-base">
             <caption className="sr-only">
