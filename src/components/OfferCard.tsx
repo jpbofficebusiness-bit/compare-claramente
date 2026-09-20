@@ -15,6 +15,7 @@ type OfferCardProps = {
   avatars?: string[];
   imageSrc?: string;
   imageAlt?: string;
+  benefits?: string[]; // [] = esconde a lista
   barPercent?: number;
   ctaText?: string;
   ctaUrl?: string;
@@ -22,6 +23,17 @@ type OfferCardProps = {
 };
 
 const brl = (v: number) => v.toFixed(2).replace(".", ",");
+
+const DEFAULT_BENEFITS = [
+  "Dados oficiais de fontes institucionais (IBGE, Banco Central, IPEA)",
+  "Análise fria e 100% sem coloração partidária",
+  "Raio-X econômico: inflação, empregos e impostos (Lula x Bolsonaro)",
+  "Gráficos e tabelas comparativas (Capitalismo vs Socialismo)",
+  "Métricas reais de Segurança Pública e Saúde",
+  "Metodologia para você avaliar o cenário com autonomia intelectual",
+  "Leitura otimizada no celular e no computador",
+  "Acesso imediato aos 3 guias em alta resolução",
+];
 
 export function OfferCard({
   title = "Sua Blindagem Eleitoral",
@@ -37,6 +49,7 @@ export function OfferCard({
   avatars = [],
   imageSrc,
   imageAlt = "",
+  benefits = DEFAULT_BENEFITS,
   barPercent = 100,
   ctaText = "QUERO ACESSAR MEU GUIA AGORA",
   ctaUrl = "#checkout",
@@ -93,6 +106,30 @@ export function OfferCard({
           <strong className="font-bold text-foreground">R$ {brl(cashPrice)}</strong> à vista
         </p>
       </div>
+
+      {benefits.length > 0 && (
+        <ul className="mt-6 space-y-3 border-t border-border pt-6">
+          {benefits.map((item) => (
+            <li
+              key={item}
+              className="flex items-start gap-3 text-[0.95rem] leading-snug text-foreground"
+            >
+              <svg viewBox="0 0 20 20" aria-hidden="true" className="mt-0.5 size-5 shrink-0">
+                <circle cx="10" cy="10" r="10" fill="#2f7d4f" />
+                <path
+                  d="M5.5 10.3l3 3 6-6.3"
+                  fill="none"
+                  stroke="#fff"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      )}
 
       <section className="mt-5 rounded-2xl bg-muted/50 p-5">
         {avatars.length > 0 && (
