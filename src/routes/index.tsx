@@ -789,6 +789,8 @@ function Oferta() {
           </h2>
           <OfferCard
             ctaUrl={OFERTA.checkout}
+            imageSrc="/imagemlivro.jpeg"
+            imageAlt="Livro Lula x Bolsonaro: O Que Cada Um Fez"
             avatars={[avatarCarlos, avatarMariana, avatarRoberto, avatarFernanda, avatarJoao, avatarAline]}
             onCtaClick={() => track("cta_click", { location: "offer_card" })}
           />

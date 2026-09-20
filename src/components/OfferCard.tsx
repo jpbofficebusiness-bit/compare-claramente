@@ -13,6 +13,8 @@ type OfferCardProps = {
   proofHighlight?: string;
   proofText?: string;
   avatars?: string[];
+  imageSrc?: string;
+  imageAlt?: string;
   barPercent?: number;
   ctaText?: string;
   ctaUrl?: string;
@@ -33,6 +35,8 @@ export function OfferCard({
   proofHighlight = "Mais de 300",
   proofText = "já estão estudando o guia",
   avatars = [],
+  imageSrc,
+  imageAlt = "",
   barPercent = 100,
   ctaText = "QUERO ACESSAR MEU GUIA AGORA",
   ctaUrl = "#checkout",
@@ -61,6 +65,15 @@ export function OfferCard({
         )}
       </header>
       <p className="mt-1.5 text-base text-muted-foreground">{subtitle}</p>
+
+      {imageSrc && (
+        <img
+          src={imageSrc}
+          alt={imageAlt}
+          loading="lazy"
+          className="mt-5 h-auto w-full rounded-xl object-cover"
+        />
+      )}
 
       <div className="mt-7">
         {installmentOldPrice ? (
