@@ -84,7 +84,7 @@ export function OfferCard({
           src={imageSrc}
           alt={imageAlt}
           loading="lazy"
-          className="mt-5 h-auto w-full rounded-xl object-cover"
+          className="mx-auto mt-5 h-auto w-full max-w-[16rem] rounded-xl object-cover"
         />
       )}
 
