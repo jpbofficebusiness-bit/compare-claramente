@@ -113,10 +113,25 @@ const dores = [
   "Quantas horas do seu dia você já perdeu garimpando matérias soltas, apenas para desistir no meio do caminho, mais confuso e exausto?",
 ];
 
-const comparativo = [
-  ["Origem", "Memes emocionais", "Horas de garimpo", "Dados Oficiais Verificados"],
-  ["Isenção", "Viés ideológico", "Filtrado pela bolha", "Separação Rígida de Fatos"],
-  ["Tempo", "Gera ansiedade", "Exaustivo", "Leitura direta e organizada"],
+const comparativo: [string, string, string, string][] = [
+  [
+    "Matéria-Prima (Origem)",
+    "Memes, histeria e narrativas desenhadas para manipular as emoções",
+    "Um oceano caótico de artigos de opinião disfarçados de jornalismo",
+    "Fatos institucionais incontestáveis (IBGE, Banco Central, IPEA)",
+  ],
+  [
+    "Nível de Controle (Isenção)",
+    "Viés algorítmico extremo: diz a você apenas o que a sua bolha quer ouvir",
+    "Viés de confirmação e horas perdidas tentando validar dados",
+    "Matemática fria, imparcial e blindada contra paixões políticas",
+  ],
+  [
+    "Custo Mental (Tempo)",
+    "Gera ansiedade, discussões estéreis e exaustão emocional",
+    "Drena sua energia e deixa você ainda mais confuso",
+    "Clareza imediata e poder argumentativo numa leitura direta",
+  ],
 ];
 
 const faq = [
@@ -647,7 +662,7 @@ function TabelaComparativa() {
     <section className="section-pad" aria-labelledby="tabela-title">
       <div className={SHELL}>
         <h2 id="tabela-title" className="rule-gold max-w-2xl text-2xl font-bold md:text-4xl">
-          Como você prefere se informar a partir de hoje?
+          O Novo Quadro Comparativo
         </h2>
         <p className="mt-4 flex items-center gap-2 text-sm font-semibold text-muted-foreground md:hidden">
           <MoveHorizontal aria-hidden="true" className="size-4 shrink-0 animate-pulse text-gold" />
@@ -658,10 +673,10 @@ function TabelaComparativa() {
           onScroll={atualizarProgresso}
           className="mt-6 overflow-x-auto rounded-xl border border-border bg-card shadow-card"
         >
-          <table className="w-full min-w-[34rem] border-collapse text-left text-sm md:text-base">
+          <table className="w-full min-w-[46rem] border-collapse text-left text-sm md:text-base">
             <caption className="sr-only">
-              Comparação entre se informar pelas redes sociais, pelo Google ou pelo guia comparativo,
-              segundo origem, isenção e tempo.
+              Comparação entre se informar pelas redes sociais, pelo Google ou pelos nossos guias,
+              segundo matéria-prima, nível de controle e custo mental.
             </caption>
             <thead>
               <tr className="border-b border-border bg-secondary">
@@ -669,25 +684,27 @@ function TabelaComparativa() {
                   Critério
                 </th>
                 <th scope="col" className="px-5 py-4 font-bold">
-                  Bolha das Redes
+                  A Massa (Redes Sociais)
                 </th>
                 <th scope="col" className="px-5 py-4 font-bold">
-                  Google
+                  A Ilusão (Google)
                 </th>
                 <th scope="col" className="px-5 py-4 font-bold text-gold">
-                  O Nosso Guia
+                  O Dossiê (Nossos Guias)
                 </th>
               </tr>
             </thead>
             <tbody>
               {comparativo.map(([criterio, redes, google, guia]) => (
                 <tr key={criterio} className="border-b border-border last:border-0">
-                  <th scope="row" className="px-5 py-4 font-semibold">
+                  <th scope="row" className="px-5 py-4 align-top font-semibold">
                     {criterio}
                   </th>
-                  <td className="px-5 py-4 text-muted-foreground">{redes}</td>
-                  <td className="px-5 py-4 text-muted-foreground">{google}</td>
-                  <td className="bg-accent/50 px-5 py-4 font-semibold text-foreground">{guia}</td>
+                  <td className="px-5 py-4 align-top leading-snug text-muted-foreground">{redes}</td>
+                  <td className="px-5 py-4 align-top leading-snug text-muted-foreground">{google}</td>
+                  <td className="bg-accent/50 px-5 py-4 align-top font-semibold leading-snug text-foreground">
+                    {guia}
+                  </td>
                 </tr>
               ))}
             </tbody>
