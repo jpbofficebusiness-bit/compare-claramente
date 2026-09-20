@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 type OfferCardProps = {
   title?: string;
-  subtitle?: string;
   badge?: string;
   installments?: number;
   installmentPrice?: number;
@@ -37,7 +36,6 @@ const DEFAULT_BENEFITS = [
 
 export function OfferCard({
   title = "Sua Blindagem Eleitoral",
-  subtitle = "Um pagamento. Sem renovação.",
   badge = "Oferta",
   installments = 4,
   installmentPrice = 4.97,
@@ -77,7 +75,6 @@ export function OfferCard({
           </span>
         )}
       </header>
-      <p className="mt-1.5 text-base text-muted-foreground">{subtitle}</p>
 
       {imageSrc && (
         <img
