@@ -28,6 +28,7 @@ import avatarFernanda from "@/assets/avatars/fernanda.jpg";
 import avatarJoao from "@/assets/avatars/joao.jpg";
 import avatarAline from "@/assets/avatars/aline.jpg";
 import { CtaLink } from "@/components/landing/cta-button";
+import { OfferCard } from "@/components/OfferCard";
 import { track } from "@/lib/analytics";
 import { SocialProofNotification } from "@/components/SocialProofNotification";
 
@@ -783,29 +784,14 @@ function Oferta() {
         </div>
 
         <div className="lg:col-span-7">
-          <div className="rounded-2xl bg-card p-7 shadow-card-lg md:p-10">
-            <p className="eyebrow">Acesso completo</p>
-            <h2 id="oferta-title" className="mt-4 text-2xl font-bold md:text-4xl">
-              Adquira o Acesso Completo
-            </h2>
-            <p className="mt-6 text-base leading-relaxed md:text-lg">
-              Matriz de Integridade, Glossário Jurídico, Ficha Pessoal de Decisão.{" "}
-              <strong className="font-bold">Acesso Vitalício</strong> + Atualizações com Fontes
-              Oficiais Linkadas.
-            </p>
-            <div className="mt-8">
-              <CtaLink
-                href={OFERTA.checkout}
-                tone="gold"
-                size="lg"
-                full
-                location="offer_primary"
-                className="sm:w-auto"
-              >
-                QUERO ACESSAR O GUIA COMPARATIVO AGORA
-              </CtaLink>
-            </div>
-          </div>
+          <h2 id="oferta-title" className="sr-only">
+            Adquira o Acesso Completo
+          </h2>
+          <OfferCard
+            ctaUrl={OFERTA.checkout}
+            avatars={[avatarCarlos, avatarMariana, avatarRoberto, avatarFernanda, avatarJoao, avatarAline]}
+            onCtaClick={() => track("cta_click", { location: "offer_card" })}
+          />
 
           <div className="mt-6 flex items-start gap-4 rounded-xl border border-gold/30 bg-accent p-6 md:p-7">
             <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-card shadow-card">
