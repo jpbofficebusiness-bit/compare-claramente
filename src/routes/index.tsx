@@ -19,7 +19,6 @@ import {
   Timer,
   TrendingUp,
 } from "lucide-react";
-import cover from "@/assets/ebook-cover-new.jpg.asset.json";
 import coverCutout from "@/assets/ebook-cover-cutout.png";
 import avatarCarlos from "@/assets/avatars/carlos.jpg";
 import avatarMariana from "@/assets/avatars/mariana.jpg";
@@ -771,22 +770,12 @@ function ProvaSocial() {
 function Oferta() {
   return (
     <section id="oferta" className="section-pad scroll-mt-20" aria-labelledby="oferta-title">
-      <div className={`${SHELL} grid items-center gap-10 lg:grid-cols-12 lg:gap-16`}>
-        <div className="lg:col-span-5">
-          <img
-            src={cover.url}
-            width={1920}
-            height={1920}
-            loading="lazy"
-            alt="Capa do e-book Lula x Bolsonaro — O Que Cada Um Fez: Guia Comparativo para Decidir com Consciência"
-            className="mx-auto h-auto w-full max-w-sm rounded-lg lg:max-w-none"
-          />
-        </div>
-
-        <div className="lg:col-span-7">
+      <div className={`${SHELL} mx-auto max-w-xl`}>
+        <div>
           <h2 id="oferta-title" className="sr-only">
             Adquira o Acesso Completo
           </h2>
+          <div className="mx-auto max-w-sm">
           <OfferCard
             ctaUrl={OFERTA.checkout}
             imageSrc="/imagemlivro.jpeg"
@@ -794,6 +783,7 @@ function Oferta() {
             avatars={[avatarCarlos, avatarMariana, avatarRoberto, avatarFernanda, avatarJoao, avatarAline]}
             onCtaClick={() => track("cta_click", { location: "offer_card" })}
           />
+          </div>
 
           <div className="mt-6 flex items-start gap-4 rounded-xl border border-gold/30 bg-accent p-6 md:p-7">
             <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-card shadow-card">
