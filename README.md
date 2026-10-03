@@ -12,7 +12,7 @@ Público principal
 
 Fale com o eleitor brasileiro indeciso, moderado ou cansado da polarização, aproximadamente entre 25 e 55 anos, que acompanha política por YouTube, Instagram, WhatsApp, TikTok, notícias e conversas familiares, mas não tem tempo para estudar sozinho os mandatos completos. Essa pessoa teme ser enganada por propaganda, cortes de vídeo, números fora de contexto e acusações sem comprovação.
 
-Inclua também mensagens que acolham jovens eleitores, recém-eleitores, pessoas que querem entender o contexto histórico e eleitores que já simpatizam com um lado, mas desejam testar se seus próprios argumentos resistem aos fatos.
+Incluaa também mensagens que acolham jovens eleitores, recém-eleitores, pessoas que querem entender o contexto histórico e eleitores que já simpatizam com um lado, mas desejam testar se seus próprios argumentos resistem aos fatos.
 
 Objetivo da página
 
