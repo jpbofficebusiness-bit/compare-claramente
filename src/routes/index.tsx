@@ -243,7 +243,7 @@ function LandingPage() {
   useEffect(() => {
     track("view_landing_page", { page: "ebook_lula_x_bolsonaro" });
     if (!window.location.hash) {
-      window.scrollTo(0, 0);
+      document.getElementById("hero")?.scrollIntoView();
     }
   }, []);
 
@@ -348,7 +348,7 @@ function SiteHeader() {
 /* Abertura — a promessa */
 function Hero() {
   return (
-    <section className="scroll-mt-20 border-b border-border bg-secondary" aria-labelledby="hero-title">
+    <section id="hero" className="scroll-mt-20 border-b border-border bg-secondary" aria-labelledby="hero-title">
       <div className={`${SHELL} flex flex-col items-center py-14 text-center md:py-20 lg:py-24`}>
         <span className="pill-badge">
           <span className="size-2 rounded-full bg-gold" aria-hidden="true" />
