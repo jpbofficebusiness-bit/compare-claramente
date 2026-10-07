@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { trackMeta } from "../lib/analytics";
 
 function NotFoundComponent() {
   return (
@@ -119,7 +120,8 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1807620873614301');
-fbq('track', 'PageView');`,
+window.__metaPageViewId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + Math.random();
+fbq('track', 'PageView', {}, { eventID: window.__metaPageViewId });`,
       },
     ],
   }),
@@ -158,13 +160,15 @@ function RootComponent() {
   const router = useRouter();
 
   useEffect(() => {
+    // PageView inicial: o Pixel já disparou no <head>; envia o mesmo evento pelo servidor.
+    if (window.__metaPageViewId) trackMeta("PageView", undefined, window.__metaPageViewId);
+
     let lastPath = window.location.pathname + window.location.search;
     return router.subscribe("onResolved", ({ toLocation }) => {
       const path = toLocation.href;
       if (path === lastPath) return;
       lastPath = path;
-      const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq;
-      fbq?.("track", "PageView");
+      trackMeta("PageView");
     });
   }, [router]);
 
