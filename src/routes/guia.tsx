@@ -45,7 +45,7 @@ const SEO_TITLE = "Lula x Bolsonaro — O Que Cada Um Fez | Guia Comparativo";
 const SEO_DESC =
   "O guia comparativo que coloca lado a lado o que Lula e Bolsonaro realmente fizeram, fundamentado estritamente em dados oficiais do IBGE, STF, TSE, INPE e Tesouro Nacional.";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/guia")({
   component: LandingPage,
   head: () => ({
     meta: [
