@@ -54,7 +54,7 @@ export const Route = createFileRoute("/guia")({
       { property: "og:title", content: SEO_TITLE },
       { property: "og:description", content: SEO_DESC },
       { property: "og:type", content: "product" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "/guia" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "/" }],
