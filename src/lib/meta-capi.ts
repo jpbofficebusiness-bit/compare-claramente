@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getCookie, getRequestHeader, getRequestIP } from "@tanstack/react-start/server";
 
-export const META_PIXEL_ID = "1807620873614301";
+export const META_PIXEL_ID = "1667256441563628";
 const GRAPH_API_VERSION = "v21.0";
 
 type MetaEventInput = {
