@@ -120,7 +120,7 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1807620873614301');
+fbq('init', '1667256441563628');
 window.__metaPageViewId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + Math.random();
 fbq('track', 'PageView', {}, { eventID: window.__metaPageViewId });`,
       },
@@ -145,7 +145,7 @@ function RootShell({ children }: { children: ReactNode }) {
             height="1"
             width="1"
             style={{ display: "none" }}
-            src="https://www.facebook.com/tr?id=1807620873614301&ev=PageView&noscript=1"
+            src="https://www.facebook.com/tr?id=1667256441563628&ev=PageView&noscript=1"
             alt=""
           />
         </noscript>
